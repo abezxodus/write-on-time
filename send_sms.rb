@@ -5,8 +5,7 @@ require 'twilio-ruby'
 # and set the environment variables. See http://twil.io/secure
 # account_sid = ENV['TWILIO_ACCOUNT_SID']
 # auth_token = ENV['TWILIO_AUTH_TOKEN']
-account_sid = 'ACeaae904730be8e49e811d653fd5c351f'
-auth_token = 'fc7ba72974d29eb05db61ef22aa0f3ff'
+
 @client = Twilio::REST::Client.new(account_sid, auth_token)
 
 message = @client.messages
