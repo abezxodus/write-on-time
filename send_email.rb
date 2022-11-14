@@ -10,7 +10,7 @@ content = Content.new(type: 'text/plain', value: testcontent)
 mail = Mail.new(from, subject, to, content)
 
 # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-sg = SendGrid::API.new(api_key: "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")
+
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
 puts response.body
