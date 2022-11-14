@@ -3,8 +3,8 @@ require 'twilio-ruby'
 
 # Find your Account SID and Auth Token at twilio.com/console
 # and set the environment variables. See http://twil.io/secure
-# account_sid = ENV['TWILIO_ACCOUNT_SID']
-# auth_token = ENV['TWILIO_AUTH_TOKEN']
+account_sid = ENV['TWILIO_ACCOUNT_SID']
+auth_token = ENV['TWILIO_AUTH_TOKEN']
 
 @client = Twilio::REST::Client.new(account_sid, auth_token)
 
@@ -17,8 +17,6 @@ message = @client.messages
 
 puts message.sid
 
-# TWILIO_ACCOUNT_SID=ACeaae904730be8e49e811d653fd5c351f
-# TWILIO_AUTH_TOKEN=fc7ba72974d29eb05db61ef22aa0f3ff
 
 # Appointment Model
 # class Appointment < ActiveRecord::Base
