@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WriteOnTime</title>
+  <title>Write On Time</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   
-  <nav class="top-bar">
-    <h1><a href="/">WriteOnTime</a></h1>
+  <nav class="top-bar, custom-top-bar grid-x">
+    <img src="https://write-on-time.s3.amazonaws.com/logos/Typewriter+Logo.png" alt="image of typewriter">
+    <h1 class="large-9 medium-9 small-9"><a href="/">Write On Time</h1>
 
-    <section class="top-bar-section">
-      <ul class="right">
+    <section class="top-bar-section, custom-top-bar-section">
         <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign Up', new_user_registration_path %></button>
+          <br><br>
+          <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign In', new_user_session_path %></button>
         <%- end -%>
-      </ul>
     </section>
   </nav>
 
@@ -43,3 +43,4 @@
   <%= yield :extra_footer %>
 </body>
 </html>
+
