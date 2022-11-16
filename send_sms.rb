@@ -12,11 +12,10 @@ message = @client.messages
   .create(
     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
     from: ENV['TWILIO_NUMBER'],
-    to: '+17813084346'
+    to: '+99999999999'
   )
 
 puts message.sid
-
 
 # Appointment Model
 # class Appointment < ActiveRecord::Base
@@ -56,7 +55,6 @@ puts message.sid
 #   root 'appointments#welcome'
 # end
 
-
 # AppointmentsController
 
 # def create
@@ -73,3 +71,5 @@ puts message.sid
 #     end
 #   end
 # end
+
+

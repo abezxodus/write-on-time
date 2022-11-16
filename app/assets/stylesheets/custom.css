@@ -1,0 +1,69 @@
+.custom-top-bar{
+  background-image: url("https://write-on-time.s3.amazonaws.com/logos/nav+bar+background.png");
+  /* background-color: #47596F; */
+  color: #D5C5AE;
+  text-shadow: 2px 2px #312229;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding: 1em;
+}
+
+.custom-top-bar img{
+  max-width: 5em;
+  max-height: 5em;
+  margin-right: 1em;
+}
+
+.custom-top-bar a{
+  color: white;
+  text-shadow: 2px 2px #312229;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.custom-top-bar a:hover{
+  color: #54101D;
+  text-shadow: 1px 1px white;
+}
+
+.custom-top-bar button{
+  display: block;
+  float: right;
+  background-color: #B18653;
+  margin: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  position: 1rem;
+  text-decoration: double;
+  border: solid #D5C5AE 0.1em;
+  border-radius: 1em;
+}
+
+.submit {
+  display: block;
+  float: right;
+  background-color: #B18653;
+  margin: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  position: 1rem;
+  text-decoration: double;
+  border: solid #D5C5AE 0.1em;
+  border-radius: 1em;
+}
+
+.typewriter {
+  background-image: url("https://write-on-time.s3.amazonaws.com/logos/Typewriter.png");
+}
+
+.custom-button{
+  display: block;
+  float: right;
+  background-color: #B18653;
+  margin: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  position: 1rem;
+  text-decoration: double;
+  border: solid #D5C5AE 0.1em;
+  border-radius: 1em;
+}
+
+.beige {
+  background-color: #D5C5AE;
+}
