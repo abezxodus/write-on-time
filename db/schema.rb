@@ -16,16 +16,15 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.string "assignment_name", null: false
+    t.string "name", null: false
     t.datetime "due_date"
     t.string "note"
-    t.integer "page_count_req"
-    t.integer "word_count_req"
-    t.boolean "email_reminder"
-    t.boolean "text_reminder"
-    t.boolean "google_calendar"
-    t.boolean "open"
-    t.boolean "past_due"
+    t.string "page_count_req", default: "0"
+    t.string "word_count_req", default: "0"
+    t.boolean "email_reminder", default: false
+    t.boolean "text_reminder", default: false
+    t.boolean "open", default: true
+    t.boolean "past_due", default: false
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
-    t.boolean "open"
+    t.boolean "open", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

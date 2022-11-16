@@ -20,7 +20,8 @@ const ProjectFormTile = (props) => {
 
   return (
 
-    <div>
+    <div className="callout grid-x">
+      <img className="cell large-5" src="https://write-on-time.s3.amazonaws.com/logos/Schedule+Image.png" alt="calendar image"/>
       <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
         <label className="cell" htmlFor="name">
           Name of Project
@@ -33,7 +34,7 @@ const ProjectFormTile = (props) => {
         </label>
 
         <div>
-          <input className="custom-button cell" type="submit" value="Create Project"/>
+          <input className="form-button cell large-2" type="submit" value="Create Project"/>
         </div>
       </form>
     </div>

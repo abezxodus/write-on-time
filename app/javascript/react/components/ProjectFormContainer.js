@@ -1,15 +1,16 @@
 import React, {useState} from "react"
 import ProjectFormTile from "./ProjectFormTile"
 import AssignmentFormTile from "./AssignmentFormTile"
-import { Redirect } from "react-router-dom"
+import GoogleCalendarSetup from "./GoogleCalendarSetup"
 
 const ProjectFormContainer = (props) => {
   const [savedProject, setSavedProject] = useState({})
-  const [allSaved, setAllSaved] = useState(false)
+  // const [savedProject, setSavedProject] = useState({id: "something", name: "Placeholder", description: "Placeholder"})
+  const [savedAssignment, setSavedAssignment] = useState({})
 
   const addProject = async (formPayload) => {
     try {
-      const response = await fetch("api/v1/project", {
+      const response = await fetch("api/v1/projects", {
         credentials: "same-origin",
         method: "POST",
         headers: {
@@ -32,7 +33,7 @@ const ProjectFormContainer = (props) => {
 
   const addAssignment = async (formPayload) => {
     try {
-      const response = await fetch("api/v1/assignment", {
+      const response = await fetch("api/v1/assignments", {
         credentials: "same-origin",
         method: "POST",
         headers: {
@@ -46,21 +47,21 @@ const ProjectFormContainer = (props) => {
         const error = new Error(errorMessage)
         throw(error)
       }
-      setAllSaved(true)
+      const responseBody = await response.json()
+      setSavedAssignment(responseBody)
     } catch(error) {
       console.log(`Error in fetch: ${error.message}`)
     }
   }
 
-  if(allSaved == true){
-    return (
-      <Redirect to="/userpage"/>
-    )
-  }
-
   let assignmentForm
 
-  if (savedProject.id) {
+  if(savedAssignment.id){
+    assignmentForm = <GoogleCalendarSetup
+      savedAssignment={savedAssignment}
+      savedProject={savedProject}
+    />
+  } else if (savedProject.id) {
     assignmentForm = <AssignmentFormTile
       addAssignment={addAssignment}
       savedProject={savedProject}
