@@ -7,6 +7,10 @@
   padding: 1em;
 }
 
+.header-text{
+  font-size: 4rem;
+}
+
 .custom-top-bar img{
   max-width: 5em;
   max-height: 5em;
@@ -20,14 +24,14 @@
 }
 
 .custom-top-bar a:hover{
-  color: #54101D;
-  text-shadow: 1px 1px white;
+  color: #D5C5AE;
 }
 
 .custom-top-bar button{
   display: block;
   float: right;
-  background-color: #B18653;
+  background-color: #312229;
+  /* #B18653 */
   margin: 1rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   position: 1rem;
@@ -52,18 +56,38 @@
   background-image: url("https://write-on-time.s3.amazonaws.com/logos/Typewriter.png");
 }
 
-.custom-button{
-  display: block;
-  float: right;
-  background-color: #B18653;
+.form-button{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #47596F;
+  color: white;
   margin: 1rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   position: 1rem;
   text-decoration: double;
   border: solid #D5C5AE 0.1em;
-  border-radius: 1em;
+}
+
+.form-button:hover{
+  color: #D5C5AE;
 }
 
 .beige {
   background-color: #D5C5AE;
+}
+
+label {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: table;
+}
+
+.footer {
+  background-image: url("https://write-on-time.s3.amazonaws.com/logos/footer.png");
+  display: table-row;
+  height: 0;
 }

@@ -1,9 +1,13 @@
-class Api::V1::ProjectController < ApiController
+class Api::V1::ProjectsController < ApiController
 
   def index
-    project = Project.last
-    assignments = project.assignments
+    project = Project.all
+    render json: project
+  end
 
+  def show
+    project = Project.find(params[:id])
+    assignments = project.assignments
     render json: {project: project, assignments: assignments}
   end
 

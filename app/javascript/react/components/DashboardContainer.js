@@ -9,7 +9,7 @@ const DashboardContainer = (props) => {
 
   const fetchProject = async () => {
     try {
-      const response = await fetch("api/v1/project")
+      const response = await fetch("api/v1/projects/placeholder")
       if(!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)

@@ -3,7 +3,7 @@ class Projects < ActiveRecord::Migration[5.2]
     create_table :projects do |t|
       t.string :name, null: false
       t.string :description
-      t.boolean :open
+      t.boolean :open, default: true
 
       t.timestamps
     end

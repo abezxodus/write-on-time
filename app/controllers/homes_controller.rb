@@ -36,10 +36,40 @@ class HomesController < ApplicationController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = client
 
-    @event_list = service.list_events(params[:calendar_id])
+    # @event_list = service.list_events(params[:calendar_id])
+    @assignment = Assignment.last
+    @project = Assignment.last.project
+
   end
 
   def new_event
+    assignment = Assignment.last
+    due_date = assignment.due_date
+    note = assignment.note
+
+    if(assignment.page_count_req < 1)
+      page_count = assignment.page_count_req
+    else
+      page_count = "N/A"
+    end
+    
+    if(assignment.word_count_req < 1)
+      word_count = assignment.word_count_req
+    else
+      word_count = "N/A"
+    end
+
+    calendar_description = "Current Project: #{assignment.project.name}
+    Project Description: #{assignment.project.description}
+    
+    Current Assignment: #{assignment.name}
+    Notes on Assignment: #{ assignment.note}
+    
+    Measures For Success
+    Page Count: #{page_count}
+    Word Count: #{word_count}"
+
+    event_name = "#{Assignment.last.project.name}"
     client = Signet::OAuth2::Client.new(client_options)
     client.update!(session[:authorization])
 
@@ -51,12 +81,13 @@ class HomesController < ApplicationController
     event = Google::Apis::CalendarV3::Event.new({
       start: Google::Apis::CalendarV3::EventDateTime.new(date: today +7),
       end: Google::Apis::CalendarV3::EventDateTime.new(date: today + 8),
-      summary: 'New event!'
+      summary: "Write On Time Assignment: #{assignment.name}",
+      description: "#{calendar_description}"
     })
 
     service.insert_event(params[:calendar_id], event)
 
-    redirect_to events_url(calendar_id: params[:calendar_id])
+    redirect_to userpage_url
   end
 
   private

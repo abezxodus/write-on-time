@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   get '/userpage', to: 'static_pages#index'
   get '/newproject', to: 'static_pages#index'
-
+  # see about renaming newproject to projects/new
+  get '/projects', to: 'static_pages#index'
+  get '/projects/:id', to: 'static_pages#index'
+  
   get '/redirect', to: 'homes#redirect', as: 'redirect'
   get '/callback', to: 'homes#callback', as: 'callback'
   get '/calendars', to: 'homes#calendars', as: 'calendars'
@@ -14,8 +17,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :art, only: [:index]
-      resources :project, only: [:index, :create]
-      resources :assignment, only: [:create]
+      resources :projects, only: [:index, :show, :create]
+      resources :assignments, only: [:create, :edit, :update]
     end
   end
 

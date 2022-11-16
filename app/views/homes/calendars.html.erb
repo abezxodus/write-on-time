@@ -1,6 +1,9 @@
+<h3>Select a Calendar</h3>
+
 <ul>
   <% @calendar_list.items.each do |calendar| %>
-    <li><%= calendar.summary %> (<%= calendar.id %>)</li>
-    <%= link_to "#{calendar.summary}", "events/#{calendar.id}" %>
+    <% if calendar.summary != "Holidays in United States" && calendar.summary != "Birthdays"%>
+      <li><%= link_to "#{calendar.summary}", "events/#{calendar.id}" %></li>
+    <% end %>
   <% end %>
 </ul>

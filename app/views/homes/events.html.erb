@@ -1,8 +1,22 @@
-<ul>
-  <% @event_list.items.each do |event| %>
-    <li><%= event.summary %> (<%= event.id %>)</li>
-  <% end %>
-</ul>
+<h1>Confirmation of Assignment to be Added</h1>
+
+<div>
+  <h2>Current Project: <%=@project.name%></h2>
+  <p>Project Description: <%=@project.description%></p>
+</div>
+
+<div>
+  <h3>Current Assignment: <%=@assignment.name%></h3>
+  <p> Notes on Assignment: <%=@assignment.note%></p>
+</div>
+
+<div>
+  <h4> Measures For Success</h4>
+  <ul>
+    <li> Page Count: <%=@assignment.page_count_req%></li>
+    <li> Word Count: <%=@assignment.page_count_req%></li>
+  </ul>
+</div>
 
 <%= form_tag new_event_url do %>
   <%= submit_tag 'Add event' %>
