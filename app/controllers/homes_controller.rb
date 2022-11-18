@@ -47,18 +47,6 @@ class HomesController < ApplicationController
     due_date = assignment.due_date
     note = assignment.note
 
-    if(assignment.page_count_req < 1)
-      page_count = assignment.page_count_req
-    else
-      page_count = "N/A"
-    end
-    
-    if(assignment.word_count_req < 1)
-      word_count = assignment.word_count_req
-    else
-      word_count = "N/A"
-    end
-
     calendar_description = "Current Project: #{assignment.project.name}
     Project Description: #{assignment.project.description}
     
@@ -66,8 +54,8 @@ class HomesController < ApplicationController
     Notes on Assignment: #{ assignment.note}
     
     Measures For Success
-    Page Count: #{page_count}
-    Word Count: #{word_count}"
+    Page Count: #{assignment.page_count_req}
+    Word Count: #{assignment.word_count_req}"
 
     event_name = "#{Assignment.last.project.name}"
     client = Signet::OAuth2::Client.new(client_options)

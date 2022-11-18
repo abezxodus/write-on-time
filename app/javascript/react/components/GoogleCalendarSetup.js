@@ -2,39 +2,25 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const GoogleCalendarSetup = (props) => {
-  let page_count
-  if(props.savedAssignment.page_count_req < 1){
-    page_count = props.savedAssignment.page_count_req
-  } else {
-    page_count = "N/A"
-  }
-
-  let word_count
-  if(props.savedAssignment.word_count_req < 1){
-    word_count = props.savedAssignment.word_count_req
-  } else {
-    word_count = "N/A"
-  }
-
   return(
     <div>
       <h1>Assignment Deadline Submitted!</h1>
 
       <div>
-        <h2>Current Project: #{props.savedProject.name}</h2>
-        <p>Project Description: #{props.savedProject.description}</p>
+        <h2>Current Project: {props.savedProject.name}</h2>
+        <p>Project Description: {props.savedProject.description}</p>
       </div>
 
       <div>
-        <h3>Current Assignment: #{props.savedAssignment.name}</h3>
-        <p> Notes on Assignment: #{ props.savedAssignment.note}</p>
+        <h3>Current Assignment: {props.savedAssignment.name}</h3>
+        <p> Notes on Assignment: {props.savedAssignment.note}</p>
       </div>
 
       <div>
         <h4> Measures For Success</h4>
         <ul>
-          <li> Page Count: #{page_count}</li>
-          <li> Word Count: #{word_count}</li>
+          <li> Page Count: {props.savedAssignment.page_count_req}</li>
+          <li> Word Count: {props.savedAssignment.word_count_req}</li>
         </ul>
       </div>
 

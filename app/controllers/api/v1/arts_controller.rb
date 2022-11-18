@@ -1,4 +1,4 @@
-class Api::V1::ArtController < ApiController
+class Api::V1::ArtsController < ApiController
 
   def index
     results = []

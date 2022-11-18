@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: write-on-time_production
-  username: write-on-time
-  password: <%= ENV['WRITE-ON-TIME_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: write-on-time_production
+  # username: write-on-time
+  # password: <%= ENV['WRITE-ON-TIME_DATABASE_PASSWORD'] %>

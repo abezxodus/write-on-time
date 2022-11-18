@@ -18,10 +18,10 @@ class Api::V1::AssignmentsController < ApiController
   end
 
   def update
-    binding.pry
     assignment = Assignment.find(params[:id])
-    binding.pry
     assignment.update(assignment_params)
+    binding.pry
+    assignment[:edit] = ""
     binding.pry
     render json: assignment
   end

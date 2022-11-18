@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import DashboardTile from "./DashboardTile"
+import DashboardProjectTile from "./DashboardProjectTile"
 // import DashboardArtTile from "./DashboardArtTile"
 // import DashboardArtContainer from "./DashboardArtContainer"
 
@@ -7,9 +7,11 @@ const DashboardContainer = (props) => {
   const [project, setProject] = useState({})
   // const [art, setArt] = useState([])
 
-  const fetchProject = async () => {
+  const fetchDashboard = async () => {
     try {
-      const response = await fetch("api/v1/projects/placeholder")
+      const response = await fetch("api/v1/users", {
+        credentials: "same-origin"
+      })
       if(!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -40,32 +42,38 @@ const DashboardContainer = (props) => {
   // }
 
   useEffect(() => {
-    fetchProject()
+    fetchDashboard()
   }, [])
 
   // useEffect(() => {
   //   fetchArt()
   // }, [])
 
-  let display
-  if(project.project) {
-    display =
-    <DashboardTile
-      key={project.project.id}
-      project={project.project}
-      assignment={project.assignments}
-    />
+  let mappedProjects
+  if(project.projects){
+    mappedProjects = project.projects.map((project) => {
+      return(
+        <DashboardProjectTile
+        key={project[0].id}
+        project={project[0]}
+        assignments={project[1]}
+        />
+      )
+    }) 
   }
+
+  let user
+  if(project.user){
+    user = <p>Hi {project.user.first_name}!</p>
+  }
+
 
   return (
     <div className="typewriter">
       <div className="beige">
-        testing
+        {user}
       </div>
-      {display}
-      {/* <DashboardArtContainer
-        art={art}
-      /> */}
+      {mappedProjects}
     </div>
   )
 }

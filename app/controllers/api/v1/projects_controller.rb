@@ -1,12 +1,13 @@
 class Api::V1::ProjectsController < ApiController
+  before_action :authenticate_user!
 
   def index
-    project = Project.all
+    project = current_user.projects
     render json: project
   end
 
   def show
-    project = Project.find(params[:id])
+    project = current_user.projects.find(params[:id])
     assignments = project.assignments
     render json: {project: project, assignments: assignments}
   end
@@ -14,6 +15,7 @@ class Api::V1::ProjectsController < ApiController
   def create
     newProject = Project.new(project_params)
     newProject.save
+    current_user.projects.push(newProject)
     render json: newProject
   end
 
