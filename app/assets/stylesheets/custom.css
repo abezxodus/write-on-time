@@ -23,6 +23,10 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.custom-top-bar-section{
+  margin-left: 10%;
+}
+
 .custom-top-bar a:hover{
   color: #D5C5AE;
 }
@@ -33,7 +37,7 @@
   background-color: #312229;
   /* #B18653 */
   margin: 1rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   position: 1rem;
   text-decoration: double;
   border: solid #D5C5AE 0.1em;
@@ -90,4 +94,13 @@ html, body {
   background-image: url("https://write-on-time.s3.amazonaws.com/logos/footer.png");
   display: table-row;
   height: 0;
+}
+
+.form-page {
+  margin: auto;
+}
+
+.form-image{
+  margin: auto;
+  padding-top: 2%;
 }

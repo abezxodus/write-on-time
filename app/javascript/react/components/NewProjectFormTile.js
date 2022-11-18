@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const ProjectFormTile = (props) => {
+const NewProjectFormTile = (props) => {
   const [newProject, setNewProject] = useState({
     name: "",
     description: ""
@@ -21,7 +21,7 @@ const ProjectFormTile = (props) => {
   return (
 
     <div className="callout grid-x">
-      <img className="cell large-5" src="https://write-on-time.s3.amazonaws.com/logos/Schedule+Image.png" alt="calendar image"/>
+      <img className="cell large-5 medium-12 small-12" src="https://write-on-time.s3.amazonaws.com/logos/Schedule+Image.png" alt="calendar image"/>
       <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
         <label className="cell" htmlFor="name">
           Name of Project
@@ -41,4 +41,4 @@ const ProjectFormTile = (props) => {
   )
 }
 
-export default ProjectFormTile
+export default NewProjectFormTile

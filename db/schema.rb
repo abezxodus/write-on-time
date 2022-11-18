@@ -17,14 +17,15 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "due_date"
+    t.datetime "due_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string "note"
     t.string "page_count_req", default: "0"
     t.string "word_count_req", default: "0"
+    t.string "edit", default: "", null: false
     t.boolean "email_reminder", default: false
     t.boolean "text_reminder", default: false
-    t.boolean "open", default: true
-    t.boolean "past_due", default: false
+    t.boolean "open", default: true, null: false
+    t.boolean "past_due", default: false, null: false
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,9 +35,12 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
-    t.boolean "open", default: true
+    t.string "edit", default: "", null: false
+    t.boolean "open", default: true, null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,6 +50,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "phone_number"
+    t.string "default_picture", default: "https://write-on-time.s3.amazonaws.com/logos/penIcon.png", null: false
     t.string "profile_picture"
     t.integer "streak_count"
     t.string "reset_password_token"

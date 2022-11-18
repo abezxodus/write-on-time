@@ -1,9 +1,9 @@
 import React, {useState} from "react"
-import ProjectFormTile from "./ProjectFormTile"
-import AssignmentFormTile from "./AssignmentFormTile"
+import NewProjectFormTile from "./NewProjectFormTile"
+import NewAssignmentFormTile from "./NewAssignmentFormTile"
 import GoogleCalendarSetup from "./GoogleCalendarSetup"
 
-const ProjectFormContainer = (props) => {
+const NewProjectFormContainer = (props) => {
   const [savedProject, setSavedProject] = useState({})
   // const [savedProject, setSavedProject] = useState({id: "something", name: "Placeholder", description: "Placeholder"})
   const [savedAssignment, setSavedAssignment] = useState({})
@@ -62,12 +62,12 @@ const ProjectFormContainer = (props) => {
       savedProject={savedProject}
     />
   } else if (savedProject.id) {
-    assignmentForm = <AssignmentFormTile
+    assignmentForm = <NewAssignmentFormTile
       addAssignment={addAssignment}
       savedProject={savedProject}
     />
   } else {
-    assignmentForm = <ProjectFormTile
+    assignmentForm = <NewProjectFormTile
       addProject={addProject}
       savedProject={savedProject}
     />
@@ -80,4 +80,4 @@ const ProjectFormContainer = (props) => {
   )
 }
 
-export default ProjectFormContainer
+export default NewProjectFormContainer

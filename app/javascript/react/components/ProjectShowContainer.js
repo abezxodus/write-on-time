@@ -6,8 +6,10 @@ const ProjectShowContainer = (props) => {
 
   const fetchProject = async () => {
     try {
-      const url = window.location.pathname
-      const response = await fetch(`/api/v1${url}`)
+      const url = props.match.params.id
+      const response = await fetch(`/api/v1/projects/${url}`, {
+        credentials: "same-origin"
+      })
       if(!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)

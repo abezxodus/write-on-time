@@ -1,18 +1,22 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import AssignmentShowContainer from './AssignmentShowContainer'
 import DashboardContainer from './DashboardContainer'
-import ProjectFormContainer from './ProjectFormContainer'
+import NewProjectFormContainer from './NewProjectFormContainer'
 import ProjectIndexContainer from './ProjectIndexContainer'
 import ProjectShowContainer from './ProjectShowContainer'
+import AssignmentsEditFormContainer from './AssignmentsEditFormContainer'
 
 export const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/userpage" component={DashboardContainer}/>
-        <Route exact path="/newproject" component={ProjectFormContainer}/>
         <Route exact path="/projects" component={ProjectIndexContainer}/>
+        <Route exact path="/new" component={NewProjectFormContainer}/>
         <Route exact path="/projects/:id" component={ProjectShowContainer}/>
+        <Route exact path="/assignments/:id/edit" component={AssignmentsEditFormContainer}/>
+        <Route exact path="/assignments/:id" component={AssignmentShowContainer}/>
       </Switch>
     </BrowserRouter>
   )

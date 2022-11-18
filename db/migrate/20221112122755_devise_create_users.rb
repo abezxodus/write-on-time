@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :phone_number
+      t.string :default_picture,     null: false, default: "https://write-on-time.s3.amazonaws.com/logos/penIcon.png"
       t.string :profile_picture
       t.integer :streak_count
 

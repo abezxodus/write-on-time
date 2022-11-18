@@ -1,7 +1,6 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
-const AssignmentIndexTile = (props) => {
+const AssignmentShowTile = (props) => {
   let status
   if(props.assignment.open == true){
     status = <p>Status: Open</p>
@@ -20,7 +19,7 @@ const AssignmentIndexTile = (props) => {
 
   return(
     <div className="callout">
-      <h4>Assignment: <Link to={`/assignments/${props.assignment.id}`}>{props.assignment.name}</Link></h4>
+      <h4>Assignment: {props.assignment.name}</h4>
       {pastDue}
       <p>Due Date: {formattedDueDate}</p>
       {status}
@@ -37,4 +36,4 @@ const AssignmentIndexTile = (props) => {
   )
 }
 
-export default AssignmentIndexTile
+export default AssignmentShowTile
