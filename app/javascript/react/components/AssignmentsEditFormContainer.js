@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react"
 import AssignmentsEditFormExtensionTile from "./AssignmentsEditFormExtensionTile"
 import AssignmentsEditFormStatusTile from "./AssignmentsEditFormStatusTile"
 import AssignmentsEditFormTile from "./AssignmentsEditFormTile"
+import { Redirect } from "react-router-dom"
 
 
 const AssignmentsEditFormContainer = (props) => {
   const [assignment, setAssignment] = useState({})
+  const [redirect, setRedirect] = useState(false)
 
   const fetchAssignment = async () => {
     try{
@@ -42,7 +44,7 @@ const AssignmentsEditFormContainer = (props) => {
         throw(error)
       }
       const responseBody = await response.json()
-      setAssignment(responseBody)
+      setRedirect(true)
     } catch(error) {
       console.log(`Error in fetch: ${error.message}`)
     }
@@ -52,8 +54,13 @@ const AssignmentsEditFormContainer = (props) => {
     fetchAssignment()
   }, [])
 
-  let displayTile
+  if(redirect == true){
+    return(
+      <Redirect to={`/assignments/${props.match.params.id}`}/>
+    )
+  }
 
+  let displayTile
   if(assignment.edit == "status"){
     displayTile = <AssignmentsEditFormStatusTile
                     key={assignment.id}

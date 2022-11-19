@@ -11,7 +11,6 @@
   <nav class="top-bar, custom-top-bar grid-x">
     <img src="https://write-on-time.s3.amazonaws.com/logos/Typewriter+Logo.png" alt="image of typewriter">
     <h1 class="header-text large-9 medium-9 small-9"><a href="/">Write On Time</h1>
-
     <section class="top-bar-section, custom-top-bar-section">
         <%- if current_user -%>
           <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>

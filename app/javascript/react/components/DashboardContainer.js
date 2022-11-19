@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from "react"
 import DashboardProjectTile from "./DashboardProjectTile"
-// import DashboardArtTile from "./DashboardArtTile"
-// import DashboardArtContainer from "./DashboardArtContainer"
+import { Link } from "react-router-dom"
+
 
 const DashboardContainer = (props) => {
-  const [project, setProject] = useState({})
-  // const [art, setArt] = useState([])
+  const [projects, setProjects] = useState([])
 
   const fetchDashboard = async () => {
     try {
-      const response = await fetch("api/v1/users", {
+      const response = await fetch("api/v1/projects", {
         credentials: "same-origin"
       })
       if(!response.ok) {
@@ -17,62 +16,38 @@ const DashboardContainer = (props) => {
         const error = new Error(errorMessage)
         throw(error)
       } else {
-        const parsedProject = await response.json()
-        setProject(parsedProject)
+        const parsedProjects = await response.json()
+        setProjects(parsedProjects)
       }
     } catch(error) {
       console.log(`Error with Fetch: ${error.message}`)
     }
   }
 
-  // const fetchArt = async () => {
-  //   try {
-  //     const response = await fetch("api/v1/art")
-  //     if(!response.ok) {
-  //       const errorMessage = `${response.status} (${response.statusText})`
-  //       const error = new Error(errorMessage)
-  //       throw(error)
-  //     } else {
-  //       const parsedArt = await response.json()
-  //       setArt(parsedArt)
-  //     }
-  //   } catch(error) {
-  //     console.log(`Error with Fetch: ${error.message}`)
-  //   }
-  // }
-
   useEffect(() => {
     fetchDashboard()
   }, [])
 
-  // useEffect(() => {
-  //   fetchArt()
-  // }, [])
-
   let mappedProjects
-  if(project.projects){
-    mappedProjects = project.projects.map((project) => {
-      return(
-        <DashboardProjectTile
-        key={project[0].id}
-        project={project[0]}
-        assignments={project[1]}
-        />
-      )
-    }) 
-  }
 
-  let user
-  if(project.user){
-    user = <p>Hi {project.user.first_name}!</p>
+  if(projects.length > 0){
+    mappedProjects = projects.map((projectPack) => {
+      if(projectPack.project.open == true){
+        return(
+          <DashboardProjectTile
+          key={projectPack.project.id}
+          project={projectPack.project}
+          assignments={projectPack.assignments}
+          />
+        )
+      }
+    }) 
   }
 
 
   return (
     <div className="typewriter">
-      <div className="beige">
-        {user}
-      </div>
+      <Link to="/new">Create a New Project</Link>
       {mappedProjects}
     </div>
   )

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root 'static_pages#index'
   devise_for :users, :controllers => { registrations: 'users/registrations' }
 
+  get '/', to: 'static_pages#index'
   get '/userpage', to: 'static_pages#index'
   get '/projects', to: 'static_pages#index'
   get '/projects/:id', to: 'static_pages#index'
@@ -21,8 +22,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :arts, only: [:index]
       resources :assignments, only: [:show, :create, :edit, :update]
-      resources :projects, only: [:index,:show, :create, :edit, :update]
-      resources :users, only: [:index]
+      resources :projects, only: [:index, :show, :create, :edit, :update]
     end
   end
 
