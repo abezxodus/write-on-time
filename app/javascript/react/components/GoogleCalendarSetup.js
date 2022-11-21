@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const GoogleCalendarSetup = (props) => {
   return(
-    <div>
+  <div className="container-2">
       <h1>Assignment Deadline Submitted!</h1>
 
       <div>
@@ -24,14 +24,9 @@ const GoogleCalendarSetup = (props) => {
         </ul>
       </div>
 
-      <p>Would you like to add this assignment to your google calendar or return to your dashboard page?</p>
-
-
-      <a href="/redirect">Set Up Google Calendar</a>
-      <Link to="/userpage">Back to Dashboard</Link>
-
-      <p>Please note this app is in development so Google will require you to allow Write On Time to access your calendar.</p>
-
+      <p>Would you like to add this assignment to your <a href="/redirect">google calendar</a> or return to your <Link to="/userpage">dashboard page</Link>?</p>
+      <p>(Please note this app is in development so Google will require you to allow Write On Time to access your calendar.)</p>
+      
     </div>
   )
 }

@@ -17,7 +17,7 @@ const DashboardAssignmentTile = (props) => {
       <p>Current Assignment: <Link to={`/assignments/${props.assignment.id}`}>{props.assignment.name}</Link></p>
       <p>Due Date: {formattedDueDate}</p>
       {pastDue}
-      <button className="custom-button">Deadline Submission</button>
+      <Link to={`/assignments/${props.assignment.id}/edit`}>Edit or Mark As Submit</Link>
     </div>
   )
 }

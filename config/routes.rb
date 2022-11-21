@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root 'static_pages#index'
   devise_for :users, :controllers => { registrations: 'users/registrations' }
 
+  get '/', to: 'static_pages#index'
   get '/userpage', to: 'static_pages#index'
   get '/projects', to: 'static_pages#index'
   get '/projects/:id', to: 'static_pages#index'
   get '/assignments/:id', to: 'static_pages#index'
   get '/assignments/:id/edit', to: 'static_pages#index'
+  get '/projects/:id/edit', to: 'static_pages#index'
   get '/new', to: 'static_pages#index'
   
   get '/redirect', to: 'homes#redirect', as: 'redirect'
@@ -16,13 +18,13 @@ Rails.application.routes.draw do
   post '/events/:calendar_id', to: 'homes#new_event', as: 'new_event', calendar_id: /[^\/]+/
 
   put '/assignments/:id/api/v1/assignments/:id', to: 'api/v1/assignments#update'
-  
+  put '/projects/:id/api/v1/projects/:id', to: 'api/v1/projects#update'
+
   namespace :api do
     namespace :v1 do
       resources :arts, only: [:index]
       resources :assignments, only: [:show, :create, :edit, :update]
-      resources :projects, only: [:index,:show, :create, :edit, :update]
-      resources :users, only: [:index]
+      resources :projects, only: [:index, :show, :create, :edit, :update]
     end
   end
 

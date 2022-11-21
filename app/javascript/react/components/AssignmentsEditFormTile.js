@@ -2,10 +2,29 @@ import React, {useState} from "react"
 
 const AssignmentsEditFormTile = (props) => {
   const handleInputChangeAssignment = (event) => {
+    if(event.currentTarget.name === "open"){
+      let checkbox = !event.currentTarget.checked
+      props.setAssignment({
+        ...props.assignment,
+        [event.currentTarget.name]: checkbox
+      })
+    }else{
     props.setAssignment({
       ...props.assignment,
       [event.currentTarget.name]: event.currentTarget.value
     })
+  }
+}
+
+
+
+  let status
+  if(props.assignment.open === false){
+    status = <p>CLOSED</p>
+  } else if(props.assignment.past_due === true) {
+    status = <p>PAST DUE</p>
+  } else {
+    status = <p>OPEN</p>
   }
 
   const submitHandler = async (event) => {
@@ -14,7 +33,7 @@ const AssignmentsEditFormTile = (props) => {
   }
 
   return(
-    <div>HELLO FROM EDIT FORM
+    <div>
     <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
     <label className="cell large-8" htmlFor="name">
     Assignment
@@ -44,22 +63,14 @@ const AssignmentsEditFormTile = (props) => {
       </label>
     </div>
   
-    <div className="cell large-6">
-      <label className="cell" htmlFor="text_reminder">
-      Text Reminder
-      <input id="text_reminder" type="checkbox" name="text_reminder" onChange={handleInputChangeAssignment} value={props.assignment.text_reminder}/>
-      </label>
-  
-      <label className="cell" htmlFor="email_reminder">
-      Email Reminder
-      <input id="email_reminder" type="checkbox" name="email_reminder" onChange={handleInputChangeAssignment} value={props.assignment.email_reminder}/>
-      </label>
-    </div>
-  
-    <label className="cell" htmlFor="open">
-      Status:
-      <p>{props.assignment.open}</p>
-      </label>
+    <label className="cell">
+      {status}
+    </label>
+
+    <label className="cell large-4" htmlFor="open">
+    Close Project?
+    <input id="open" type="radio" name="open" onChange={handleInputChangeAssignment}/>
+    </label>
 
     <div>
       <input className="form-button cell large-2" type="submit" value="Update"/>

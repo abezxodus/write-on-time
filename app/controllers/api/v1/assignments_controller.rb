@@ -18,17 +18,14 @@ class Api::V1::AssignmentsController < ApiController
   end
 
   def update
-    binding.pry
     assignment = Assignment.find(params[:id])
-    binding.pry
     assignment.update(assignment_params)
-    binding.pry
     render json: assignment
   end
 
   private
 
   def assignment_params
-    params.require(:assignment).permit(:name, :due_date, :note, :page_count_req, :word_count_req, :email_reminder, :text_reminder, :project_id)
+    params.require(:assignment).permit(:name, :due_date, :note, :page_count_req, :word_count_req, :email_reminder, :text_reminder, :project_id, :open)
   end
 end
