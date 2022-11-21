@@ -33,7 +33,7 @@ const AssignmentsEditFormTile = (props) => {
   }
 
   return(
-    <div>HELLO FROM EDIT FORM
+    <div>
     <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
     <label className="cell large-8" htmlFor="name">
     Assignment
@@ -69,7 +69,7 @@ const AssignmentsEditFormTile = (props) => {
 
     <label className="cell large-4" htmlFor="open">
     Close Project?
-    <input id="open" type="checkbox" name="open" onChange={handleInputChangeAssignment}/>
+    <input id="open" type="radio" name="open" onChange={handleInputChangeAssignment}/>
     </label>
 
     <div>

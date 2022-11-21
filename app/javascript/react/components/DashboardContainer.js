@@ -46,7 +46,7 @@ const DashboardContainer = (props) => {
 
 
   return (
-    <div className="typewriter">
+    <div className="container-2">
       <Link to="/new">Create a New Project</Link>
       {mappedProjects}
     </div>

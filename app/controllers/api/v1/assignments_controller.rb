@@ -13,7 +13,6 @@ class Api::V1::AssignmentsController < ApiController
   end
 
   def edit
-    binding.pry
     assignment = Assignment.find(params[:id])
     render json: assignment
   end

@@ -1,6 +1,5 @@
 .custom-top-bar{
   background-image: url("https://write-on-time.s3.amazonaws.com/logos/nav+bar+background.png");
-  /* background-color: #47596F; */
   color: #D5C5AE;
   text-shadow: 2px 2px #312229;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -8,7 +7,7 @@
 }
 
 .header-text{
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .custom-top-bar img{
@@ -24,7 +23,7 @@
 }
 
 .custom-top-bar-section{
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
 .custom-top-bar a:hover{
@@ -103,4 +102,47 @@ html, body {
 .form-image{
   margin: auto;
   padding-top: 2%;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: inline-block;
+  text-align: center;
+}
+
+.container-2 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  display: inline-block;
+}
+
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+input[type=checkbox], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }

@@ -10,7 +10,7 @@ const AssignmentIndexTile = (props) => {
   }
 
   let pastDue
-  if(props.assignment.past_due == true){
+  if(props.assignment.past_due == true && props.assignment.open == true){
     pastDue = <h5>PAST DUE</h5>
   }
 

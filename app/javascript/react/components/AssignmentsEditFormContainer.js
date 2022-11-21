@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react"
-import AssignmentsEditFormExtensionTile from "./AssignmentsEditFormExtensionTile"
-import AssignmentsEditFormStatusTile from "./AssignmentsEditFormStatusTile"
 import AssignmentsEditFormTile from "./AssignmentsEditFormTile"
 import { Redirect } from "react-router-dom"
 

@@ -7,6 +7,9 @@ const NewProjectFormContainer = (props) => {
   const [savedProject, setSavedProject] = useState({})
   // const [savedProject, setSavedProject] = useState({id: "something", name: "Placeholder", description: "Placeholder"})
   const [savedAssignment, setSavedAssignment] = useState({})
+  // const [savedAssignment, setSavedAssignment] = useState({
+  //   id: "something", name: "Placeholder", note: "Placeholder", text_reminder: false, email_reminder: false, open: true, past_due: true, page_count_req: "10", word_count_req: "5000"
+  // })
 
   const addProject = async (formPayload) => {
     try {
@@ -75,6 +78,7 @@ const NewProjectFormContainer = (props) => {
 
   return (
     <div>
+            <img className="cell large-5 medium-12 small-12" src="https://write-on-time.s3.amazonaws.com/logos/Banner.png" alt="calendar image"/>
       {assignmentForm}
     </div>
   )

@@ -3,7 +3,7 @@ import React from "react"
 const DashboardLandingTile = (props) => {
 
   return(
-    <div>hello from welcome page</div>
+    <div>Welcome to Write On Time</div>
   )
 }
 
