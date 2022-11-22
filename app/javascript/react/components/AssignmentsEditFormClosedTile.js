@@ -1,6 +1,6 @@
 import React from "react"
 
-const AssignmentsEditFormTile = (props) => {
+const AssignmentsEditFormClosedTile = (props) => {
 
   const handleInputChangeAssignment = (event) => {
     if(event.currentTarget.name === "open"){
@@ -21,15 +21,6 @@ const AssignmentsEditFormTile = (props) => {
   const due_date = new Date(props.assignment.due_date)
   let formattedDueDate = due_date.toLocaleDateString("en-US", options)
 
-  let status
-  if(props.assignment.open === false){
-    status = <p>CLOSED</p>
-  } else if(props.assignment.past_due === true) {
-    status = <p className="past-due">PAST DUE</p>
-  } else {
-    status = <p>OPEN</p>    
-  }
-
   const submitHandler = async (event) => {
     event.preventDefault()
     props.editAssignment(props.assignment)
@@ -49,33 +40,28 @@ const AssignmentsEditFormTile = (props) => {
     <p>{formattedDueDate}</p>
     </label>
   
-    <label className="cell">
-      {status}
-    </label>
-    
     <label className="cell" htmlFor="note">
     Notes
     <input id="note" type="text" name="note" onChange={handleInputChangeAssignment} value={props.assignment.note}/>
     </label>
-
-    <label className="cell large-6" htmlFor="page_count_req">
+  
+    <div className="cell large-6">
+      <label className="cell large-4" htmlFor="page_count_req">
       Page Count
       <input id="page_count_req" type="text" name="page_count_req" onChange={handleInputChangeAssignment} value={props.assignment.page_count_req}/>
-    </label>
+      </label>
   
-    <label className="cell large-6" htmlFor="word_count_req">
+      <label className="cell large-4" htmlFor="word_count_req">
       Word Count
       <input id="word_count_req" type="text" name="word_count_req" onChange={handleInputChangeAssignment} value={props.assignment.word_count_req}/>
-    </label>
-  
-    <div className="cell center">
-      <label className="cell large-4" htmlFor="open">
-        Close Project?
-        <input id="open" type="checkbox" name="open" onChange={handleInputChangeAssignment}/>
       </label>
     </div>
+  
+    <label className="cell">
+      <p>CLOSED</p>
+    </label>
 
-    <div className="cell">
+    <div>
       <input className="form-button large-2" type="submit" value="Update"/>
     </div>
   </form>
@@ -83,4 +69,4 @@ const AssignmentsEditFormTile = (props) => {
   )
 }
 
-export default AssignmentsEditFormTile
+export default AssignmentsEditFormClosedTile

@@ -210,6 +210,10 @@ input[type=checkbox], select, textarea {
   text-align: center;
 }
 
+.left {
+  text-align: left;
+}
+
 input[type=submit], select, textarea {
   display: block;
   float: left;
@@ -245,4 +249,8 @@ div .container-container{
   list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margins */
+}
+
+a .space{
+  margin: 2em;
 }

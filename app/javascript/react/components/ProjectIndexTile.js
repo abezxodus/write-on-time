@@ -13,11 +13,13 @@ const ProjectIndexTile = (props) => {
   }
 
   return(
-    <div className="callout">
+    <div className="callout left">
       <h3><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></h3>
       <p>Description: {props.project.description}</p>
       <p>Status: {status}</p>
-      {editDisplay}
+      <div className="center">
+        {editDisplay} 
+      </div>
     </div>
   )
 }
