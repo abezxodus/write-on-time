@@ -47,7 +47,7 @@ const AssignmentIndexTile = (props) => {
   const formattedDueDate = due_date.toLocaleDateString("en-US", options)
 
   return(
-    <div className="callout">
+    <div className="callout left">
       <h4>Assignment: {props.assignment.name}</h4>
       {pastDue}
       <p>Due Date: {formattedDueDate}</p>
@@ -55,13 +55,15 @@ const AssignmentIndexTile = (props) => {
       <p> Notes on Assignment: {note}</p>
 
       <div className="callout container-container">
-        <h5> Measures For Success</h5>
+        <h5 className="center"> Measures For Success</h5>
         <ul>
           <li> Page Count: {page_count}</li>
           <li> Word Count: {word_count}</li>
         </ul>
       </div>
-      <Link to={`/assignments/${props.assignment.id}/edit`}>{editButton}</Link>
+      <div className="center">
+        <Link to={`/assignments/${props.assignment.id}/edit`}>{editButton}</Link>
+      </div>
     </div>
   )
 }

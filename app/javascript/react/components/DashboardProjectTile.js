@@ -15,13 +15,20 @@ const DashboardProjectTile = (props) => {
   })
 
   return (
-    <div className="callout">
-      <h4><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></h4>
-      {mappedAssignments}
-      <Link to={`/new`}>Add Another Assignment</Link>
-      <br></br>
-      <br></br>
-      <Link to={`/projects/${props.project.id}/edit`}>Edit or Close Project</Link>
+    <div>
+      <div className="callout left">
+        <h4><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></h4>
+        {mappedAssignments}
+        <div className="center">
+          <br></br>
+          <Link to={`/new`}>Add Another Assignment</Link>
+          <br></br>
+          <br></br>
+          <Link to={`/projects/${props.project.id}/edit`}>Edit or Close Project</Link>
+          <br></br>
+          <br></br>
+        </div>
+      </div>
     </div>
   )
 }

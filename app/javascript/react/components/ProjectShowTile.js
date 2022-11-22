@@ -21,7 +21,7 @@ const ProjectShowTile = (props) => {
   }
 
   return (
-    <div className="container-2">
+    <div className="container">
         <h3>{props.projectPackage.name}</h3>
         <p>Description: {props.projectPackage.description}</p>
         {status}

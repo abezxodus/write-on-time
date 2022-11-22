@@ -37,7 +37,7 @@ const ProjectIndexContainer = (props) => {
   return (
     <div>
       <h2  className="blur-header">Project History</h2>
-      <div className="container-2">
+      <div className="container">
         {mappedProjects}
       </div>
     </div>

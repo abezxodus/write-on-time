@@ -52,9 +52,9 @@ const ProjectShowContainer = (props) => {
     }
   }
 
-  const handleInputChange = (event) => {
-    setNewAssignment(event.currentTarget.checked)
-  }
+  // const handleInputChange = (event) => {
+  //   setNewAssignment(event.currentTarget.checked)
+  // }
 
   return(
     <div>

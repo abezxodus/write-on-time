@@ -5,7 +5,7 @@ const GoogleCalendarSetup = (props) => {
   return(
     <div>
       <h2 className="blur-header">Assignment Deadline Submitted!</h2>
-      <div className="container-2">
+      <div className="container">
 
 
           <div>
@@ -13,14 +13,14 @@ const GoogleCalendarSetup = (props) => {
             <p>{props.savedProject.description}</p>
           </div>
 
-          <div className="callout">
+          <div className="callout left">
             <h3>Current Assignment: {props.savedAssignment.name}</h3>
             <p> Notes on Assignment: {props.savedAssignment.note}</p>
   
 
-            <div className="callout container-container">
+            <div className="callout container-container center">
               <h4> Measures For Success</h4>
-              <ul>
+              <ul className="calendar-ul">
                 <li> Page Count: {props.savedAssignment.page_count_req}</li>
                 <li> Word Count: {props.savedAssignment.word_count_req}</li>
               </ul>

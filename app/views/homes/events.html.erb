@@ -1,9 +1,9 @@
 <h1 class=blur-header>Confirmation of Assignment to be Added</h1>
 
-<div class="container-4">
+<div class="container">
     <h2>Current Project: <%=@project.name%></h2>
     <p>Project Description: <%=@project.description%></p>
-  <div class="callout">
+  <div class="callout left">
 
   <div>
     <h3>Current Assignment: <%=@assignment.name%></h3>
@@ -14,9 +14,9 @@
     <% end %>
   </div>
 
-  <div class="container-container">
+  <div class="container-container center">
     <h4> Measures For Success</h4>
-    <ul>
+    <ul class="calendar-ul">
       <% if(@assignment.page_count_req == "") || (@assignment.page_count_req == nil) || (@assignment.page_count_req == "0") %>
         <li> Page Count: N/A</li>
       <% else %>

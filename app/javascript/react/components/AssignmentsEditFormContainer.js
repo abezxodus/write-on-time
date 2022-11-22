@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react"
 import AssignmentsEditFormTile from "./AssignmentsEditFormTile"
+import AssignmentsEditFormClosedTile from "./AssignmentsEditFormClosedTile"
 import { Redirect } from "react-router-dom"
 
 
 const AssignmentsEditFormContainer = (props) => {
   const [assignment, setAssignment] = useState({})
+  const [formAssignment, setFormAssignment] = useState({})
   const [project, setProject] = useState({})
   const [redirect, setRedirect] = useState(false)
+
 
   const fetchAssignment = async () => {
     try{
@@ -20,6 +23,7 @@ const AssignmentsEditFormContainer = (props) => {
         throw(error)
       } const parsedAssignment = await response.json()
       setAssignment(parsedAssignment)
+      setFormAssignment(parsedAssignment)
     } catch(error) {
       console.log(`Error in fetch: ${error.message}`)
     }
@@ -60,13 +64,26 @@ const AssignmentsEditFormContainer = (props) => {
     )
   }
 
-  let displayTile = <AssignmentsEditFormTile
-                    key={assignment.id}
-                    assignment={assignment}
-                    editAssignment={editAssignment}
-                    setAssignment={setAssignment}
-                    fetchAssignment={fetchAssignment}
-                  />
+  let displayTile
+  if(formAssignment){
+    if(formAssignment.open == true){
+      displayTile = <AssignmentsEditFormTile
+                        key={assignment.id}
+                        assignment={assignment}
+                        setAssignment={setAssignment}
+                        editAssignment={editAssignment}
+                        fetchAssignment={fetchAssignment}
+                      />
+    } else {
+      displayTile = <AssignmentsEditFormClosedTile
+                      key={assignment.id}
+                      assignment={assignment}
+                      setAssignment={setAssignment}
+                      editAssignment={editAssignment}
+                      fetchAssignment={fetchAssignment}
+                    />
+    }
+  }
   
   return (
     <div>

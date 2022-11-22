@@ -7,7 +7,6 @@ class Api::V1::AssignmentsController < ApiController
   end
 
   def create
-    binding.pry
     assignment = Assignment.new(assignment_params)
     assignment.save
     render json: assignment
@@ -19,6 +18,7 @@ class Api::V1::AssignmentsController < ApiController
   end
 
   def update
+    binding.pry
     assignment = Assignment.find(params[:id])
     assignment.update(assignment_params)
     project = assignment.project
