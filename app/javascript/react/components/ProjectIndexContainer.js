@@ -25,17 +25,21 @@ const ProjectIndexContainer = (props) => {
   }, [])
 
   const mappedProjects = projects.map((project) => {
+    // debugger
     return (
       <ProjectIndexTile
-        key={project.id}
-        project={project}
+        key={project.project.id}
+        project={project.project}
       />
     )
   })
 
   return (
     <div>
-      {mappedProjects}
+      <h2  className="blur-header">Project History</h2>
+      <div className="container-2">
+        {mappedProjects}
+      </div>
     </div>
   )
 }

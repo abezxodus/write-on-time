@@ -46,9 +46,15 @@ const DashboardContainer = (props) => {
 
 
   return (
-    <div className="container-2">
-      <Link to="/new">Create a New Project</Link>
-      {mappedProjects}
+    <div>
+      <h2 className="blur-header">User Dashboard</h2>
+      <div className="container-3">
+        <h3>Open Projects</h3>
+        <Link to="/new">Create a New Project</Link>
+        <br></br>
+        <br></br>
+        {mappedProjects}
+      </div>
     </div>
   )
 }

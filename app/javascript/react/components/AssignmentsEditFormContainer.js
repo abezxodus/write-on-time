@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom"
 
 const AssignmentsEditFormContainer = (props) => {
   const [assignment, setAssignment] = useState({})
+  const [project, setProject] = useState({})
   const [redirect, setRedirect] = useState(false)
 
   const fetchAssignment = async () => {
@@ -42,6 +43,7 @@ const AssignmentsEditFormContainer = (props) => {
         throw(error)
       }
       const responseBody = await response.json()
+      setProject(responseBody)
       setRedirect(true)
     } catch(error) {
       console.log(`Error in fetch: ${error.message}`)
@@ -54,36 +56,21 @@ const AssignmentsEditFormContainer = (props) => {
 
   if(redirect == true){
     return(
-      <Redirect to={`/assignments/${props.match.params.id}`}/>
+      <Redirect to={`/projects/${project.id}`}/>
     )
   }
 
-  let displayTile
-  if(assignment.edit == "status"){
-    displayTile = <AssignmentsEditFormStatusTile
+  let displayTile = <AssignmentsEditFormTile
                     key={assignment.id}
                     assignment={assignment}
                     editAssignment={editAssignment}
                     setAssignment={setAssignment}
+                    fetchAssignment={fetchAssignment}
                   />
-  } else if(assignment.edit == "due date") {
-    displayTile = <AssignmentsEditFormExtensionTile
-                    key={assignment.id}
-                    assignment={assignment}
-                    editAssignment={editAssignment}
-                    setAssignment={setAssignment}
-                  />
-  } else {
-    displayTile = <AssignmentsEditFormTile
-                    key={assignment.id}
-                    assignment={assignment}
-                    editAssignment={editAssignment}
-                    setAssignment={setAssignment}
-                  />
-  }
-
+  
   return (
     <div>
+      <h2 className="blur-header">Edit Assignment</h2>
       {displayTile}
     </div>
   )

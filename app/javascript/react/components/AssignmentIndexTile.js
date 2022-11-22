@@ -11,7 +11,35 @@ const AssignmentIndexTile = (props) => {
 
   let pastDue
   if(props.assignment.past_due == true && props.assignment.open == true){
-    pastDue = <h5>PAST DUE</h5>
+    pastDue = <h5 className="past-due">PAST DUE</h5>
+  }
+
+  let page_count
+  if(props.assignment.page_count_req == ""){
+    page_count = "N/A"
+  } else {
+    page_count = props.assignment.page_count_req
+  }
+
+  let word_count
+  if(props.assignment.word_count_req == ""){
+    word_count = "N/A"
+  } else {
+    word_count = props.assignment.word_count_req
+  }
+  
+  let note
+  if(props.assignment.note == ""){
+    note = "N/A"
+  } else {
+    note = props.assignment.note
+  }
+
+  let editButton
+  if(props.assignment.open == true){
+    editButton = "Edit or Mark as Completed"
+  } else {
+    editButton = "Edit"
   }
 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
@@ -20,19 +48,20 @@ const AssignmentIndexTile = (props) => {
 
   return(
     <div className="callout">
-      <h4>Assignment: <Link to={`/assignments/${props.assignment.id}`}>{props.assignment.name}</Link></h4>
+      <h4>Assignment: {props.assignment.name}</h4>
       {pastDue}
       <p>Due Date: {formattedDueDate}</p>
       {status}
-      <p> Notes on Assignment: {props.assignment.note}</p>
+      <p> Notes on Assignment: {note}</p>
 
-      <div>
-        <h4> Measures For Success</h4>
+      <div className="callout container-container">
+        <h5> Measures For Success</h5>
         <ul>
-          <li> Page Count: {props.assignment.page_count_req}</li>
-          <li> Word Count: {props.assignment.word_count_req}</li>
+          <li> Page Count: {page_count}</li>
+          <li> Word Count: {word_count}</li>
         </ul>
       </div>
+      <Link to={`/assignments/${props.assignment.id}/edit`}>{editButton}</Link>
     </div>
   )
 }

@@ -6,13 +6,9 @@
   padding: 1em;
 }
 
-.header-text{
-  font-size: 3rem;
-}
-
 .custom-top-bar img{
-  max-width: 5em;
-  max-height: 5em;
+  max-width: 7em;
+  max-height: 10em;
   margin-right: 1em;
 }
 
@@ -87,6 +83,8 @@ html, body {
   width: 100%;
   margin: 0;
   display: table;
+  background-image: url("https://write-on-time.s3.amazonaws.com/logos/Faded+Scheduler+Background.png");
+  min-height: fit-content;
 }
 
 .footer {
@@ -109,6 +107,7 @@ html, body {
   background-color: #f2f2f2;
   padding: 20px;
   width: 50%;
+  margin-bottom: 5%;
   margin-left: 25%;
   margin-right: 25%;
   display: inline-block;
@@ -120,6 +119,47 @@ html, body {
   background-color: #f2f2f2;
   padding: 20px;
   width: 70%;
+  margin-bottom: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  display: inline-block;
+}
+.container-4 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  padding-left: 280px;
+  padding-right: 280px;
+  width: 70%;
+  margin-bottom: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  display: inline-block;
+}
+.container-5 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  padding-left: 180px;
+  padding-right: 180px;
+  width: 50%;
+  margin-bottom: 5%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: inline-block;
+}
+
+.container-3 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  width: 70%;
+  margin-bottom: 5%;
   margin-left: 15%;
   margin-right: 15%;
   display: inline-block;
@@ -137,12 +177,72 @@ input[type=text], select, textarea {
 }
 
 input[type=checkbox], select, textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  margin: 1em;
+}
+
+.main-font {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.main-font a{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #47596F;
+  text-shadow: 1px 1px 2px #D5C5AE;
+}
+
+.main-font a:hover{
+  color: #54101D;
+  text-shadow: 0px 0px 0px
+}
+
+.past-due{
+  color: #54101D;
+  font-weight: bolder;
+}
+
+.scheduler-background{
+  background-image: url("https://write-on-time.s3.amazonaws.com/logos/Faded+Scheduler+Background.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.center {
+  text-align: center;
+}
+
+input[type=submit], select, textarea {
+  display: block;
+  float: left;
+  background-color: #47596F;
+  color: #D5C5AE;
+  margin: 1rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  position: 1rem;
+  text-decoration: double;
+  border: solid #D5C5AE 0.1em;
+  border-radius: 1em;
+}
+
+input[type=submit]:hover{
+  background-color: #47596F;
+  color: #312229;
+  border: solid #312229 0.1em;
+}
+
+div .container-container{
+  background-color: #f2f2f2;
+}
+
+.blur-header{
+  text-align: center;
+  backdrop-filter: blur(10px) saturate(70%);
+  margin-bottom: 2em;
+  color: white;
+  text-shadow: 1px 1px 2px #312229;
+}
+
+.calendar-ul{
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
 }

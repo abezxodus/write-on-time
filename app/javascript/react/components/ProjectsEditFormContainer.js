@@ -68,6 +68,7 @@ const ProjectsEditFormContainer = (props) => {
 
   return (
     <div>
+      <h2 className="blur-header">Edit Project</h2>
       {displayTile}
     </div>
   )

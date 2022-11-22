@@ -30,10 +30,13 @@ const AssignmentShowContainer = (props) => {
   //   showTile = 
   // }
   return (
-    <AssignmentShowTile
-      key={assignment.id}
-      assignment={assignment}
-    />
+    <div>
+      <h2  className="blur-header">Assignment Details</h2>
+      <AssignmentShowTile
+        key={assignment.id}
+        assignment={assignment}
+      />
+    </div>
   )
 }
 

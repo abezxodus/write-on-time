@@ -1,9 +1,12 @@
-<h3>Select a Calendar</h3>
+<h2 class="blur-header">Select a Calendar</h2>  
+<div class="container-5">
 
-<ul>
-  <% @calendar_list.items.each do |calendar| %>
-    <% if calendar.summary != "Holidays in United States" && calendar.summary != "Birthdays"%>
-      <li><%= link_to "#{calendar.summary}", "events/#{calendar.id}" %></li>
+
+  <ul class="calendar-ul">
+    <% @calendar_list.items.each do |calendar| %>
+      <% if calendar.summary != "Holidays in United States" && calendar.summary != "Birthdays"%>
+        <li class="callout"><%= link_to "#{calendar.summary}", "events/#{calendar.id}" %></li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+</div>

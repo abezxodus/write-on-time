@@ -19,23 +19,25 @@ const NewProjectFormTile = (props) => {
   }
 
   return (
+    <div>
+      <h2 className="blur-header">Create Project</h2>
+      <div className="container">
+        <form onSubmit={submitHandler}>
+          <label className="cell large-6" htmlFor="name">
+            *Name of Project
+            <input id="name" type="text" name="name" onChange={handleInputChangeProject} value={newProject.name}/>
+          </label>
 
-    <div class="container">
-      <form onSubmit={submitHandler}>
-        <label className="cell large-6" htmlFor="name">
-          Name of Project
-          <input id="name" type="text" name="name" onChange={handleInputChangeProject} value={newProject.name}/>
-        </label>
+          <label className="cell large-6" htmlFor="description">
+            Description
+            <input id="description" type="text" name="description" onChange={handleInputChangeProject} value={newProject.description}/>
+          </label>
 
-        <label className="cell large-6" htmlFor="description">
-          Description
-          <input id="description" type="text" name="description" onChange={handleInputChangeProject} value={newProject.description}/>
-        </label>
-
-        <div>
-          <input className="form-button cell large-2" type="submit" value="Create Project"/>
-        </div>
-      </form>
+          <div>
+            <input className="form-button large-2" type="submit" value="Create Project"/>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
