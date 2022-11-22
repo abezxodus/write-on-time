@@ -16,11 +16,14 @@ const ProjectsEditFormTile = (props) => {
     }   
   }
 
+  let checkedStatus
   let status
   if(props.project.open === false){
     status = <p>CLOSED</p>
+    checkedStatus = true
   } else {
     status = <p>OPEN</p>
+    checkedStatus = false
   }
 
   const submitHandler = async (event) => {
@@ -32,7 +35,7 @@ const ProjectsEditFormTile = (props) => {
     <div class="container">
       <form onSubmit={submitHandler}>
         <label className="cell large-6" htmlFor="name">
-          Name of Project
+          *Name of Project
           <input id="name" type="text" name="name" onChange={handleInputChangeProject} value={props.project.name}/>
         </label>
 
@@ -47,12 +50,12 @@ const ProjectsEditFormTile = (props) => {
         </label>
 
         <label className="cell large-4" htmlFor="open">
-        Close Project?
-        <input id="open" type="radio" name="open" onChange={handleInputChangeProject}/>
+          Close Project?
+          <input id="open" type="checkbox" name="open" onChange={handleInputChangeProject} checked={checkedStatus}/>
         </label>
 
         <div>
-          <input className="form-button cell large-2" type="submit" value="Edit Project"/>
+          <input className="form-button large-2" type="submit" value="Edit Project"/>
         </div>
       </form>
     </div>

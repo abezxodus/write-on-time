@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   put '/assignments/:id/api/v1/assignments/:id', to: 'api/v1/assignments#update'
   put '/projects/:id/api/v1/projects/:id', to: 'api/v1/projects#update'
+  post '/projects/api/v1/assignments', to: 'api/v1/assignments#create'
 
   namespace :api do
     namespace :v1 do

@@ -1,21 +1,35 @@
-<h1>Confirmation of Assignment to be Added</h1>
+<h1 class=blur-header>Confirmation of Assignment to be Added</h1>
 
-<div>
-  <h2>Current Project: <%=@project.name%></h2>
-  <p>Project Description: <%=@project.description%></p>
-</div>
+<div class="container-4">
+    <h2>Current Project: <%=@project.name%></h2>
+    <p>Project Description: <%=@project.description%></p>
+  <div class="callout">
 
-<div>
-  <h3>Current Assignment: <%=@assignment.name%></h3>
-  <p> Notes on Assignment: <%=@assignment.note%></p>
-</div>
+  <div>
+    <h3>Current Assignment: <%=@assignment.name%></h3>
+    <% if(@assignment.note == nil) || (@assignment.note == "")%>
+      <p> Notes on Assignment: N/A</p>
+    <% else %>
+      <p> Notes on Assignment: <%=@assignment.note%></p>
+    <% end %>
+  </div>
 
-<div>
-  <h4> Measures For Success</h4>
-  <ul>
-    <li> Page Count: <%=@assignment.page_count_req%></li>
-    <li> Word Count: <%=@assignment.page_count_req%></li>
-  </ul>
+  <div class="container-container">
+    <h4> Measures For Success</h4>
+    <ul>
+      <% if(@assignment.page_count_req == "") || (@assignment.page_count_req == nil) || (@assignment.page_count_req == "0") %>
+        <li> Page Count: N/A</li>
+      <% else %>
+        <li> Page Count: <%=@assignment.page_count_req%></p>
+      <% end %>
+      <% if(@assignment.word_count_req == "") || (@assignment.word_count_req == nil) || (@assignment.word_count_req == "0") %>
+        <li> Word Count: N/A</li>
+      <% else %>
+        <li> Word Count: <%=@assignment.word_count_req%></li>
+      <% end %>
+    </ul>
+  </div>
+
 </div>
 
 <%= form_tag new_event_url do %>

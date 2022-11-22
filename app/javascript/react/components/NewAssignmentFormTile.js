@@ -41,19 +41,22 @@ const NewAssignmentFormTile = (props) => {
   }
 
   return(
-      <div className="beige">
-        <h4 className="cell text-center">{props.savedProject.name}</h4>
-        <h5 className="cell text-center">{props.savedProject.description}</h5>
+      <div>
+        <h2 className="blur-header">Create Assignment</h2>
+        <div>
+
+        </div>
         <div className="container">
+          <h4 className="cell text-center">{props.savedProject.name}</h4>
           <div className="cell large-5">
             <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
               <label className="cell large-8" htmlFor="name">
-              First Assignment
+              *First Assignment
               <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={newAssignment.name}/>
               </label>
 
               <label className="cell large-4" htmlFor="due_date">
-              Due Date
+              *Due Date
               <input id="due_date" type="date" name="due_date" onChange={handleInputChangeAssignment} value={newAssignment.due_date}/>
               </label>
 

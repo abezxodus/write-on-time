@@ -2,37 +2,43 @@
 <html>
 <head>
   <title>Write On Time</title>
+    <link rel="icon" type="image/x-icon" href="https://write-on-time.s3.amazonaws.com/logos/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="scheduler-background">
   
   <nav class="top-bar, custom-top-bar grid-x">
-    <img src="https://write-on-time.s3.amazonaws.com/logos/Typewriter+Logo.png" alt="image of typewriter">
     <%- if current_user -%>
-      <h1 class="header-text large-9 medium-9 small-9"><a href="/userpage">Write On Time</h1>
+      <h1 class="header-text large-8 medium-6 small-6"><a href="/userpage"><img src="https://write-on-time.s3.amazonaws.com/logos/Header+Logo.png" alt="image of typewriter"></h1>
     <%- else -%>
-      <h1 class="header-text large-9 medium-9 small-9"><a href="/">Write On Time</h1>
+      <h1 class="header-text large-8 medium-6 small-6"><a href="/"><img src="https://write-on-time.s3.amazonaws.com/logos/Header+Logo.png" alt="image of typewriter"></h1>
     <%- end -%>
     <section class="top-bar-section custom-top-bar-section">
         <%- if current_user -%>
-          <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
+          <div class="cell">  
+            <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
+            <button><%= link_to 'All Projects', "/projects"%></button>
+          </div>
         <%- else -%>
-          <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign Up', new_user_registration_path %></button>
-          <br><br>
-          <button class="cell large-1 medium-1 small-1"><%= link_to 'Sign In', new_user_session_path %></button>
+          <div class="cell">
+            <button ><%= link_to 'Sign Up', new_user_registration_path %></button>
+            <button ><%= link_to 'Sign In', new_user_session_path %></button>
+          </div>
         <%- end -%>
     </section>
   </nav>
 
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
+    <div class="flash flash-<%= key %> blur-header">
       <%= value %>
     </div>
   <%- end -%>
 
-  <%= yield %>
+  <div class="main-font">
+    <%= yield %>
+  </div>
 
   <%= javascript_include_tag 'application' %>
   
