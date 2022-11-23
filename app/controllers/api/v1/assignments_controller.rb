@@ -18,7 +18,6 @@ class Api::V1::AssignmentsController < ApiController
   end
 
   def update
-    binding.pry
     assignment = Assignment.find(params[:id])
     assignment.update(assignment_params)
     project = assignment.project

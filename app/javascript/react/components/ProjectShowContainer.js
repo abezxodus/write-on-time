@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import ProjectShowTile from "./ProjectShowTile"
-import { Link } from "react-router-dom"
 import NewProjectFormContainer from "./NewProjectFormContainer"
 
 const ProjectShowContainer = (props) => {
@@ -43,30 +42,10 @@ const ProjectShowContainer = (props) => {
                     />
   }
 
-  let editDisplay
-  if(project.project){
-    if(project.project.open == true){
-      editDisplay = <Link to={`/projects/${project.project.id}/edit`}>Edit or Close Project</Link>
-    } else {
-      editDisplay = <Link to={`/projects/${project.project.id}/edit`}>Edit or Reopen Project</Link>
-    }
-  }
-
-  // const handleInputChange = (event) => {
-  //   setNewAssignment(event.currentTarget.checked)
-  // }
-
   return(
     <div>
       <h2  className="blur-header">Project Details</h2>
-      {/* <form>
-        <label className="cell large-4" htmlFor="open">
-          Ass New Assignment
-          <input id="open" type="checkbox" name="open" onChange={handleInputChange}/>
-        </label>
-      </form> */}
       {projectDisplay}
-      {editDisplay}
     </div>
   )
 }

@@ -33,22 +33,20 @@ const AssignmentShowTile = (props) => {
 
   return(
     <div className="container-5">
-    <h4>Assignment: {props.assignment.name}</h4>
-    <div className="callout">
-
-      {pastDue}
-      <p>Due Date: {formattedDueDate}</p>
-      {status}
-      <p> Notes on Assignment: {props.assignment.note}</p>
-
-      <div className="container-container">
-        <h4> Measures For Success</h4>
-        <ul className="calendar-ul">
-          <li> Page Count: {page_count}</li>
-          <li> Word Count: {word_count}</li>
-        </ul>
+      <h4>Assignment: {props.assignment.name}</h4>
+      <div className="callout">
+        {pastDue}
+        <p>Due Date: {formattedDueDate}</p>
+        {status}
+        <p> Notes on Assignment: {props.assignment.note}</p>
+        <div className="container-container">
+          <h4> Measures For Success</h4>
+          <ul className="calendar-ul">
+            <li> Page Count: {page_count}</li>
+            <li> Word Count: {word_count}</li>
+          </ul>
+        </div>
       </div>
-    </div>
     </div>
   )
 }

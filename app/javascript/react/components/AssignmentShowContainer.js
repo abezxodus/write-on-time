@@ -25,10 +25,6 @@ const AssignmentShowContainer = (props) => {
     fetchAssignment()
   }, [])
 
-  // let showTile
-  // if(assignment.id){
-  //   showTile = 
-  // }
   return (
     <div>
       <h2  className="blur-header">Assignment Details</h2>

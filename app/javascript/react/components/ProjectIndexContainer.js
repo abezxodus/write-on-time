@@ -25,7 +25,6 @@ const ProjectIndexContainer = (props) => {
   }, [])
 
   const mappedProjects = projects.map((project) => {
-    // debugger
     return (
       <ProjectIndexTile
         key={project.project.id}

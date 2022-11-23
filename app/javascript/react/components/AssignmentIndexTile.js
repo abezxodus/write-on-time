@@ -53,7 +53,6 @@ const AssignmentIndexTile = (props) => {
       <p>Due Date: {formattedDueDate}</p>
       {status}
       <p> Notes on Assignment: {note}</p>
-
       <div className="callout container-container">
         <h5 className="center"> Measures For Success</h5>
         <ul>
