@@ -36,7 +36,6 @@ class HomesController < ApplicationController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = client
 
-    # @event_list = service.list_events(params[:calendar_id])
     @assignment = Assignment.last
     @project = Assignment.last.project
 
@@ -64,11 +63,9 @@ class HomesController < ApplicationController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = client
 
-    today = Date.today
-
     event = Google::Apis::CalendarV3::Event.new({
-      start: Google::Apis::CalendarV3::EventDateTime.new(date: today +7),
-      end: Google::Apis::CalendarV3::EventDateTime.new(date: today + 8),
+      start: Google::Apis::CalendarV3::EventDateTime.new(date: due_date),
+      end: Google::Apis::CalendarV3::EventDateTime.new(date: due_date + 1),
       summary: "Write On Time Assignment: #{assignment.name}",
       description: "#{calendar_description}"
     })

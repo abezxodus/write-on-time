@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_15_130618) do
+ActiveRecord::Schema.define(version: 2022_11_23_154230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "due_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string "note"
     t.string "page_count_req", default: "0"
     t.string "word_count_req", default: "0"
-    t.string "edit", default: "", null: false
     t.boolean "email_reminder", default: false
     t.boolean "text_reminder", default: false
     t.boolean "open", default: true, null: false
@@ -29,13 +27,13 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "due_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["project_id"], name: "index_assignments_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
-    t.string "edit", default: "", null: false
     t.boolean "open", default: true, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -58,6 +56,9 @@ ActiveRecord::Schema.define(version: 2022_11_15_130618) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_assignments", default: 0, null: false
+    t.integer "total_on_time", default: 0, null: false
+    t.integer "total_late", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

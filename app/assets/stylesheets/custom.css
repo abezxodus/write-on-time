@@ -229,7 +229,7 @@ input[type=submit], select, textarea {
 
 input[type=submit]:hover{
   background-color: #47596F;
-  color: #312229;
+  color: white;
   border: solid #312229 0.1em;
 }
 

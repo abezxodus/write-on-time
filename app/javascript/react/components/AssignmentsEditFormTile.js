@@ -27,7 +27,7 @@ const AssignmentsEditFormTile = (props) => {
   } else if(props.assignment.past_due === true) {
     status = <p className="past-due">PAST DUE</p>
   } else {
-    status = <p>OPEN</p>    
+    status = <p>OPEN</p>
   }
 
   const submitHandler = async (event) => {
@@ -39,14 +39,14 @@ const AssignmentsEditFormTile = (props) => {
     <div className="container">
     <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
     <label className="cell large-8" htmlFor="name">
-    *Assignment
-    <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={props.assignment.name}/>
+      *Assignment
+      <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={props.assignment.name}/>
     </label>
   
     
     <label className="cell large-4" htmlFor="due_date">
-    *Due Date :
-    <p>{formattedDueDate}</p>
+      *Due Date :
+      <p>{formattedDueDate}</p>
     </label>
   
     <label className="cell">
@@ -54,8 +54,8 @@ const AssignmentsEditFormTile = (props) => {
     </label>
     
     <label className="cell" htmlFor="note">
-    Notes
-    <input id="note" type="text" name="note" onChange={handleInputChangeAssignment} value={props.assignment.note}/>
+      Notes
+      <input id="note" type="text" name="note" onChange={handleInputChangeAssignment} value={props.assignment.note}/>
     </label>
 
     <label className="cell large-6" htmlFor="page_count_req">

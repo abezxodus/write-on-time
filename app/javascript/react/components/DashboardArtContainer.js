@@ -20,4 +20,3 @@ const DashboardArtContainer = (props) => {
   }
 
 export default DashboardArtContainer
-  

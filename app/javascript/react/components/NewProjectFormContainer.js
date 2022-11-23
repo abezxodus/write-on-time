@@ -12,7 +12,6 @@ const NewProjectFormContainer = (props) => {
   // })
 
   useEffect(() => {
-    debugger
     if(props.project){
       setSavedProject(props)
     }

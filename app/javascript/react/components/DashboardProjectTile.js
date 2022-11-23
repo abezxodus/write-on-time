@@ -14,6 +14,11 @@ const DashboardProjectTile = (props) => {
     }
   })
 
+  const submitHandler = async (event) => {
+    event.preventDefault()
+    props.setSavedProject(props.project)
+  }
+
   return (
     <div>
       <div className="callout left">
@@ -21,7 +26,11 @@ const DashboardProjectTile = (props) => {
         {mappedAssignments}
         <div className="center">
           <br></br>
-          <Link to={`/new`}>Add Another Assignment</Link>
+          <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
+            <div className="cell">
+              <input className="form-button large-2" type="submit" value="Add New Assignment"/>
+            </div>
+          </form>
           <br></br>
           <br></br>
           <Link to={`/projects/${props.project.id}/edit`}>Edit or Close Project</Link>

@@ -21,12 +21,6 @@ const NewAssignmentFormTile = (props) => {
         ...newAssignment,
         [event.currentTarget.name]: event.currentTarget.checked
       })
-    // } else if (event.currentTarget.name === "page_count_req" || 
-    // event.currentTarget.name === "word_count_req"){
-    //   setNewAssignment({
-    //     ...newAssignment,
-    //     [event.currentTarget.name]: parseInt(event.currentTarget.value)
-      // })
     } else {
       setNewAssignment({
         ...newAssignment,
@@ -51,29 +45,29 @@ const NewAssignmentFormTile = (props) => {
           <div className="cell large-5">
             <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
               <label className="cell large-8" htmlFor="name">
-              *First Assignment
-              <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={newAssignment.name}/>
+                *First Assignment
+                <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={newAssignment.name}/>
               </label>
 
               <label className="cell large-4" htmlFor="due_date">
-              *Due Date
-              <input id="due_date" type="date" name="due_date" onChange={handleInputChangeAssignment} value={newAssignment.due_date}/>
+                *Due Date
+                <input id="due_date" type="date" name="due_date" onChange={handleInputChangeAssignment} value={newAssignment.due_date}/>
               </label>
 
               <label className="cell" htmlFor="note">
-              Notes
-              <input id="note" type="text" name="note" onChange={handleInputChangeAssignment} value={newAssignment.notes}/>
+                Notes
+                <input id="note" type="text" name="note" onChange={handleInputChangeAssignment} value={newAssignment.notes}/>
               </label>
 
-                <label className="cell large-6" htmlFor="page_count_req">
+              <label className="cell large-6" htmlFor="page_count_req">
                 Page Count
                 <input id="page_count_req" type="text" name="page_count_req" onChange={handleInputChangeAssignment} value={newAssignment.page_count_req}/>
-                </label>
+              </label>
 
-                <label className="cell large-6" htmlFor="word_count_req">
+              <label className="cell large-6" htmlFor="word_count_req">
                 Word Count
                 <input id="word_count_req" type="text" name="word_count_req" onChange={handleInputChangeAssignment} value={newAssignment.word_count_req}/>
-                </label>
+              </label>
 
               {/* <div className="cell large-6">
                 <label className="cell" htmlFor="text_reminder">
