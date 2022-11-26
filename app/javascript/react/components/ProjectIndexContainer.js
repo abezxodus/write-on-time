@@ -1,23 +1,13 @@
 import React, {useEffect, useState} from "react"
 import ProjectIndexTile from "./ProjectIndexTile"
+import FetchProjects from "./services/FetchProjects"
 
 const ProjectIndexContainer = (props) => {
   const [projects, setProjects] = useState([])
 
   const fetchProjects = async () => {
-    try{
-      const response = await fetch("api/v1/projects", {
-        credentials: "same-origin"
-      })
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      } const parsedProjects = await response.json()
-      setProjects(parsedProjects)
-    } catch(error) {
-      console.log(`Error in fetch: ${error.message}`)
-    }
+    const parsedProjects = await FetchProjects.getProjects()
+    setProjects(parsedProjects)
   }
 
   useEffect(() => {

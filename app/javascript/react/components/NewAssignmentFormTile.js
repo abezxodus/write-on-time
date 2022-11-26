@@ -1,7 +1,7 @@
 import React, {useState} from "react"
+import ErrorList from "./ErrorList"
 
 const NewAssignmentFormTile = (props) => {
-
   const [newAssignment, setNewAssignment] = useState({
     name: "",
     due_date: "",
@@ -29,9 +29,33 @@ const NewAssignmentFormTile = (props) => {
     }
   }
 
+  const validForSubmission = () => {
+    let submitErrors = {}
+    const requiredFields = ["name", "due_date"]
+    requiredFields.forEach(field => {
+      if (newAssignment[field].trim() === "") {
+        submitErrors = {
+          ...submitErrors,
+          [field]: "is blank"
+        }
+      }
+    })
+    props.setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
+  }
+
   const submitHandler = async (event) => {
     event.preventDefault()
-    props.addAssignment(newAssignment)
+    if(validForSubmission()){
+      props.addAssignment(newAssignment)
+    }
+  }
+  
+  let backendErrorMessages
+  if(props.mappedErrors){
+    backendErrorMessages =  <div className="callout alert grid-x cell large-12">
+                              <ul className="calendar-ul">{props.mappedErrors}</ul>
+                            </div>
   }
 
   return(
@@ -44,6 +68,8 @@ const NewAssignmentFormTile = (props) => {
           <h4 className="cell text-center">{props.savedProject.name}</h4>
           <div className="cell large-5">
             <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
+              <ErrorList errors={props.errors}/> 
+              {backendErrorMessages}
               <label className="cell large-8" htmlFor="name">
                 *First Assignment
                 <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={newAssignment.name}/>

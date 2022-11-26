@@ -37,9 +37,7 @@ const AssignmentIndexTile = (props) => {
 
   let editButton
   if(props.assignment.open == true){
-    editButton = "Edit or Mark as Completed"
-  } else {
-    editButton = "Edit"
+    editButton = <Link to={`/assignments/${props.assignment.id}/edit`}>Edit or Mark as Completed</Link>
   }
 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
@@ -61,7 +59,7 @@ const AssignmentIndexTile = (props) => {
         </ul>
       </div>
       <div className="center">
-        <Link to={`/assignments/${props.assignment.id}/edit`}>{editButton}</Link>
+        {editButton}
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import ErrorList from "./ErrorList"
 
 const ProjectsEditFormTile = (props) => {
   const handleInputChangeProject = (event) => {
@@ -28,12 +29,32 @@ const ProjectsEditFormTile = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    props.editProject(props.project)
+    if(validForSubmission()){
+      props.editProject(props.project)
+    }
+  }
+
+  const validForSubmission = () => {
+    let submitErrors = {}
+    const requiredFields = ["name"]
+    requiredFields.forEach(field => {
+      if (props.project[field].trim() === "") {
+        submitErrors = {
+          ...submitErrors,
+          [field]: "is blank"
+        }
+      }
+    })
+    props.setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
   }
 
   return(
-    <div class="container">
+    <div className="container">
       <form onSubmit={submitHandler}>
+        <ErrorList 
+            errors={props.errors}
+        />
         <label className="cell large-6" htmlFor="name">
           *Name of Project
           <input id="name" type="text" name="name" onChange={handleInputChangeProject} value={props.project.name}/>

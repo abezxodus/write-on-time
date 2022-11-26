@@ -8,8 +8,14 @@ class Api::V1::AssignmentsController < ApiController
 
   def create
     assignment = Assignment.new(assignment_params)
-    assignment.save
-    render json: assignment
+    if(current_user.email.include?("gmail"))
+      assignment[:google_calendar] = true
+    end
+    if(assignment.save)
+      render json: assignment
+    else
+      render json: { errors: assignment.errors.full_messages }
+    end
   end
 
   def edit
@@ -27,6 +33,6 @@ class Api::V1::AssignmentsController < ApiController
   private
 
   def assignment_params
-    params.require(:assignment).permit(:name, :due_date, :note, :page_count_req, :word_count_req, :email_reminder, :text_reminder, :project_id, :open)
+    params.require(:assignment).permit(:name, :due_date, :note, :page_count_req, :word_count_req, :email_reminder, :text_reminder, :project_id, :open, :google_calendar)
   end
 end
