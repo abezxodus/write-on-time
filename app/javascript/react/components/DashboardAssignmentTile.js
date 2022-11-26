@@ -11,13 +11,13 @@ const DashboardAssignmentTile = (props) => {
   if(props.assignment.past_due == true){
     pastDue = <p className="past-due">PAST DUE!</p>
   }
-
+  
   return(
     <div className="callout container-container">
       <p>Current Assignment: <Link to={`/assignments/${props.assignment.id}`}>{props.assignment.name}</Link></p>
       <p>Due Date: {formattedDueDate}</p>
       {pastDue}
-      <Link to={`/assignments/${props.assignment.id}/edit`}>Edit or Mark As Submit</Link>
+      <Link to={`/assignments/${props.assignment.id}/edit`}>Edit or Mark As Completed</Link>
     </div>
   )
 }

@@ -2,10 +2,14 @@ import React, {useEffect, useState} from "react"
 import NewProjectFormTile from "./NewProjectFormTile"
 import NewAssignmentFormTile from "./NewAssignmentFormTile"
 import GoogleCalendarSetup from "./GoogleCalendarSetup"
+import FetchPostAssignment from "./services/FetchPostAssignment"
+import FetchPostProject from "./services/FetchPostProject"
 
 const NewProjectFormContainer = (props) => {
+  const [errors, setErrors] = useState({})
   const [savedProject, setSavedProject] = useState({})
   const [savedAssignment, setSavedAssignment] = useState({})
+  const [backendErrors, setBackendErrors] = useState({})
   // const [savedProject, setSavedProject] = useState({id: "something", name: "Placeholder", description: "Placeholder"})
   // const [savedAssignment, setSavedAssignment] = useState({
   //   id: "something", name: "Placeholder", note: "Placeholder", text_reminder: false, email_reminder: false, open: true, past_due: true, page_count_req: "10", word_count_req: "5000"
@@ -19,49 +23,29 @@ const NewProjectFormContainer = (props) => {
 
 
   const addProject = async (formPayload) => {
-    try {
-      const response = await fetch("api/v1/projects", {
-        credentials: "same-origin",
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formPayload)
-        })
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const responseBody = await response.json()
-      setSavedProject(responseBody)
-    } catch(error) {
-      console.log(`Error in fetch: ${error.message}`)
-    }
+    const responseBody = await FetchPostProject.addProject(formPayload)
+    setSavedProject(responseBody)
   }
 
   const addAssignment = async (formPayload) => {
-    try {
-      const response = await fetch("api/v1/assignments", {
-        credentials: "same-origin",
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formPayload)
-        })
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const responseBody = await response.json()
+    const responseBody = await FetchPostAssignment.addAssignment(formPayload)
+    if(responseBody["errors"]){
+      setBackendErrors(responseBody)
+    } else {
       setSavedAssignment(responseBody)
-    } catch(error) {
-      console.log(`Error in fetch: ${error.message}`)
-    }
+    } 
+  }
+
+  let mappedErrors
+
+  if(backendErrors["errors"]){
+    mappedErrors = backendErrors["errors"].map((error) => {
+      if(!error.includes("Created at")){
+        return(
+          <li>{error}</li>
+        )
+      }
+    })
   }
 
   let assignmentForm
@@ -75,11 +59,16 @@ const NewProjectFormContainer = (props) => {
     assignmentForm = <NewAssignmentFormTile
       addAssignment={addAssignment}
       savedProject={savedProject}
+      errors={errors}
+      setErrors={setErrors}
+      mappedErrors={mappedErrors}
     />
   } else {
     assignmentForm = <NewProjectFormTile
       addProject={addProject}
       savedProject={savedProject}
+      errors={errors}
+      setErrors={setErrors}
     />
   }
 

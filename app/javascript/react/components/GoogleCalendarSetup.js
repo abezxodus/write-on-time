@@ -1,6 +1,16 @@
 import React from "react"
 
 const GoogleCalendarSetup = (props) => {
+  let googleMessage
+  if(props.savedAssignment.google_calendar == true){
+    googleMessage = <div>
+                      <p>Would you like to add this assignment to your <a href="/redirect">Google calendar</a> or return to your <a href="/userpage">dashboard page</a>?</p>
+                      <p>(This app is in development so Google will require you to allow Write On Time to access your calendar.)</p>
+                    </div>
+  } else {
+    googleMessage = <a href="/userpage">Return to Dashboard</a>
+  }
+
   return(
     <div>
       <h2 className="blur-header">Assignment Deadline Submitted!</h2>
@@ -20,8 +30,7 @@ const GoogleCalendarSetup = (props) => {
               </ul>
             </div>
           </div>
-          <p>Would you like to add this assignment to your <a href="/redirect">Google calendar</a> or return to your <a href="/userpage">dashboard page</a>?</p>
-          <p>(This app is in development so Google will require you to allow Write On Time to access your calendar.)</p>
+          {googleMessage}
         </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import React from "react"
+import ErrorList from "./ErrorList"
 
 const AssignmentsEditFormTile = (props) => {
 
@@ -32,12 +33,32 @@ const AssignmentsEditFormTile = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    props.editAssignment(props.assignment)
+    if(validForSubmission()){
+      props.editAssignment(props.assignment)
+    }
+  }
+
+  const validForSubmission = () => {
+    let submitErrors = {}
+    const requiredFields = ["name", "due_date"]
+    requiredFields.forEach(field => {
+      if (props.assignment[field].trim() === "") {
+        submitErrors = {
+          ...submitErrors,
+          [field]: "is blank"
+        }
+      }
+    })
+    props.setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
   }
 
   return(
     <div className="container">
     <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
+    <ErrorList 
+            errors={props.errors}
+          />
     <label className="cell large-8" htmlFor="name">
       *Assignment
       <input id="name" type="text" name="name" onChange={handleInputChangeAssignment} value={props.assignment.name}/>

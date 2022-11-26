@@ -1,51 +1,24 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import ProjectsEditFormTile from "./ProjectsEditFormTile"
-
+import FetchEditProject from "./services/FetchEditProject"
+import FetchPostEditProject from "./services/FetchPostEditProject"
 
 const ProjectsEditFormContainer = (props) => {
   const [project, setProject] = useState({})
   const [redirect, setRedirect] = useState(false)
+  const [errors, setErrors] = useState({})
 
   const fetchProject = async () => {
-    try{
-      const url = props.match.params.id
-      const response = await fetch(`/api/v1/projects/${url}/edit`, {
-        credentials: "same-origin"
-      })
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      } const parsedProject = await response.json()
-      setProject(parsedProject)
-    } catch(error) {
-      console.log(`Error in fetch: ${error.message}`)
-    }
+    const url = props.match.params.id
+    const parsedProject = await FetchEditProject.getEditProject(url)
+    setProject(parsedProject)
   }
 
   const editProject = async (formPayload) => {
-    try {
-      const url = props.match.params.id
-      const response = await fetch(`api/v1/projects/${url}`, {
-        credentials: "same-origin",
-        method: "PUT",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formPayload)
-        })
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const responseBody = await response.json()
-      setRedirect(true)
-    } catch(error) {
-      console.log(`Error in fetch: ${error.message}`)
-    }
+    const url = props.match.params.id
+    const parsedProject = await FetchPostEditProject.postEditProject(url, formPayload)
+    setRedirect(true)
   }
 
   useEffect(() => {
@@ -63,8 +36,9 @@ const ProjectsEditFormContainer = (props) => {
                     project={project}
                     editProject={editProject}
                     setProject={setProject}
+                    errors={errors}
+                    setErrors={setErrors}
                   />
-
 
   return (
     <div>

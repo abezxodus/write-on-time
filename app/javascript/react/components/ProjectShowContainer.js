@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from "react"
 import ProjectShowTile from "./ProjectShowTile"
 import NewProjectFormContainer from "./NewProjectFormContainer"
+import FetchProject from "./services/FetchProject"
 
 const ProjectShowContainer = (props) => {
   const [project, setProject] = useState({})
   const [newAssignment, setNewAssignment] = useState(false)
 
   const fetchProject = async () => {
-    try {
-      const url = props.match.params.id
-      const response = await fetch(`/api/v1/projects/${url}`, {
-        credentials: "same-origin"
-      })
-      if(!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      } else {
-        const parsedProject = await response.json()
-        setProject(parsedProject)
-      }
-    } catch(error) {
-      console.log(`Error with Fetch: ${error.message}`)
-    }
+    const url = props.match.params.id
+    const parsedProject = await FetchProject.getProject(url)
+    setProject(parsedProject)
   }
 
   useEffect(() => {
