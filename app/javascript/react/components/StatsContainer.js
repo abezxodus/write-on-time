@@ -65,7 +65,7 @@ const StatsContainer = props => {
       <li>Submitted Late: {closedLateAssignments}</li>
       </ul>
       <br></br>
-      <p>Success Rate: {successRate}</p>
+      <p>Success Rate: {successRate}%</p>
       </div>
       <p>Total Words Written: {totalWords}</p>
       <p>Total Pages Written: {totalPages}</p>

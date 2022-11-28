@@ -8,7 +8,9 @@ const GoogleCalendarSetup = (props) => {
                       <p>(This app is in development so Google will require you to allow Write On Time to access your calendar.)</p>
                     </div>
   } else {
-    googleMessage = <a href="/userpage">Return to Dashboard</a>
+    googleMessage = <div><a href="/userpage">Return to Dashboard</a>
+                        <p>(If you would like to be able to add this event to your Google calendar, email michaeltrainor.mt@gmail.com to request authorization.)</p>
+                    </div>
   }
 
   return(
