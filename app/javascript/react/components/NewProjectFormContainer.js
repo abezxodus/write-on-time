@@ -11,6 +11,7 @@ const NewProjectFormContainer = (props) => {
   const [savedAssignment, setSavedAssignment] = useState({})
   const [backendErrors, setBackendErrors] = useState({})
 
+
   useEffect(() => {
     if(props.project){
       setSavedProject(props)

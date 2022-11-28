@@ -7,9 +7,9 @@ const ProjectShowTile = (props) => {
   let editDisplay
   if(props.projectPackage){
     if(props.projectPackage.open == true){
-      editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`}>Edit or Close Project</Link>
+      editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Close Project</Link>
     } else {
-      editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`}>Edit or Reopen Project</Link>
+      editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Reopen Project</Link>
     }
   }
 
@@ -20,17 +20,20 @@ const ProjectShowTile = (props) => {
     status = <p>Status: OPEN</p>
   }
 
+  let description
+  if(props.projectPackage.description !== ""){
+    description = <p>"{props.projectPackage.description}"</p>
+  }
+
   return (
     <div className="container">
         <h3>{props.projectPackage.name}</h3>
-        <p>Description: {props.projectPackage.description}</p>
+        {description}
         {status}
+        {editDisplay}
         <AssignmentIndexContainer
           assignments={props.assignmentPackage}
         />
-        {editDisplay}
-        <br></br>
-        <br></br>
         <Link to="/projects">Back to Projects</Link>
     </div>
   )

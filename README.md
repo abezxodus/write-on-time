@@ -35,6 +35,7 @@ For future features Twilio, SendGrid, AWS, and API Ninja keys will be needed as 
 
   API_NINJA_API_KEY=[your API key here]
 
+Since this is in development, only 100 google accounts can have access using the Google Calendar API.  As of the point of writing this ReadMe, only a couple of accounts have been set up by the developer, Michael Trainor.  For any other users needing access you will need to contact Michael at michaeltrainor.mt[at]gmail.com to request being added to the authorized users list.
 
 -To Do-
 

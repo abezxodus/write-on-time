@@ -26,9 +26,9 @@ const DashboardProjectTile = (props) => {
         {mappedAssignments}
         <div className="center">
           <br></br>
-          <form className="callout grid-x grid-margin-x" onSubmit={submitHandler}>
-            <div className="cell">
-              <input className="form-button large-2" type="submit" value="Add New Assignment"/>
+          <form className="center-button" onSubmit={submitHandler}>
+            <div className="vertical-center">
+              <input className="form-button large-2" type="submit" value="+Assignment"/>
             </div>
           </form>
           <br></br>

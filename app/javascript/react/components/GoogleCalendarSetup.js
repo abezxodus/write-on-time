@@ -9,7 +9,7 @@ const GoogleCalendarSetup = (props) => {
                     </div>
   } else {
     googleMessage = <div><a href="/userpage">Return to Dashboard</a>
-                        <p>(If you would like to be able to add this event to your Google calendar, email michaeltrainor.mt@gmail.com to request authorization.)</p>
+                        <p className="justify">(If you would like to add assignments to your Google calendar, email michaeltrainor.mt@gmail.com to request setup.)</p>
                     </div>
   }
 

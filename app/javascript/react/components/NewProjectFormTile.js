@@ -54,8 +54,10 @@ const NewProjectFormTile = (props) => {
             <input id="description" type="text" name="description" onChange={handleInputChangeProject} value={newProject.description}/>
           </label>
 
-          <div>
+          <div className="center-button">
+            <div className="vertical-center">
             <input className="form-button large-2" type="submit" value="Create Project"/>
+            </div>
           </div>
         </form>
       </div>

@@ -27,7 +27,7 @@ const ProjectsEditFormContainer = (props) => {
 
   if(redirect == true){
     return(
-      <Redirect to={`/projects/${props.match.params.id}`}/>
+      <Redirect to={`/userpage`}/>
     )
   }
 
