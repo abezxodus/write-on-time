@@ -1,7 +1,4 @@
 import React from "react"
-import StatsTile from "./StatsTile"
-// import { Chart } from "react-google-charts"
-
 
 const StatsContainer = props => {
   
@@ -17,6 +14,7 @@ const StatsContainer = props => {
   let closedOnTimeAssignments = 0
   let totalWords = 0
   let totalPages = 0
+  let successRate = 0.00
 
   if(props.projectsPack.length > 0){
     totalProjects = props.projectsPack.length
@@ -53,6 +51,7 @@ const StatsContainer = props => {
         }
       })
     })
+    successRate = parseFloat((closedOnTimeAssignments/closedAssignments)*100.00).toFixed(2)
   }
 
   return (
@@ -66,7 +65,7 @@ const StatsContainer = props => {
       <li>Submitted Late: {closedLateAssignments}</li>
       </ul>
       <br></br>
-      <p>Success Rate: {parseFloat((closedOnTimeAssignments/closedAssignments)*100.00).toFixed(2)}%</p>
+      <p>Success Rate: {successRate}</p>
       </div>
       <p>Total Words Written: {totalWords}</p>
       <p>Total Pages Written: {totalPages}</p>

@@ -26,7 +26,7 @@ class Api::V1::AssignmentsController < ApiController
   def update
     assignment = Assignment.find(params[:id])
     assignment.update(assignment_params)
-  streak_count = current_user.streak_count
+    streak_count = current_user.streak_count
     total_assignments = current_user.total_assignments + 1
     total_on_time = current_user.total_on_time
     total_late = current_user.total_late
