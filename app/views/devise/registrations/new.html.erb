@@ -1,6 +1,6 @@
 <h2 class="blur-header">Sign up</h2>
 
-<div class="container-5"> 
+<div class="container"> 
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -40,8 +40,10 @@
 
     <br/>
 
-    <div class="actions">
-      <%= f.submit "Sign up" %>
+    <div class="center-button">
+      <div class="actions vertical-center">
+        <%= f.submit "Sign up" %>
+      </div>
     </div>
   <% end %>
 

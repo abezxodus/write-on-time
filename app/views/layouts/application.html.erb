@@ -15,22 +15,22 @@
 </head>
 <body class="scheduler-background">
   
-  <nav class="top-bar, custom-top-bar grid-x">
+  <nav class="top-bar, custom-top-bar">
     <%- if current_user -%>
-      <h1 class="header-text large-8 medium-6 small-6"><a href="/userpage"><img src="https://write-on-time.s3.amazonaws.com/logos/Header+Logo.png" alt="image of typewriter"></h1>
+      <h1 class="large-12 medium-12 small-12"><a href="/userpage"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
     <%- else -%>
-      <h1 class="header-text large-8 medium-6 small-6"><a href="/"><img src="https://write-on-time.s3.amazonaws.com/logos/Header+Logo.png" alt="image of typewriter"></h1>
+      <h1 class="large-12 medium-12 small-12"><a href="/"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
     <%- end -%>
     <section class="top-bar-section custom-top-bar-section">
         <%- if current_user -%>
-          <div class="cell">  
-            <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
+          <div class="header-text">  
             <button><%= link_to 'All Projects', "/projects"%></button>
+            <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
           </div>
         <%- else -%>
-          <div class="cell">
-            <button ><%= link_to 'Sign Up', new_user_registration_path %></button>
+          <div class="header-text">
             <button ><%= link_to 'Sign In', new_user_session_path %></button>
+            <button ><%= link_to 'Sign Up', new_user_registration_path %></button>
           </div>
         <%- end -%>
     </section>

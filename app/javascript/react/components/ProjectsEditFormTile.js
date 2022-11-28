@@ -75,8 +75,10 @@ const ProjectsEditFormTile = (props) => {
           <input id="open" type="checkbox" name="open" onChange={handleInputChangeProject} checked={checkedStatus}/>
         </label>
 
-        <div>
-          <input className="form-button large-2" type="submit" value="Edit Project"/>
+        <div className="center-button">
+          <div className="vertical-center">
+            <input className="form-button large-2" type="submit" value="Edit Project"/>
+          </div>
         </div>
       </form>
     </div>

@@ -1,5 +1,5 @@
 .custom-top-bar{
-  background-image: url("https://write-on-time.s3.amazonaws.com/logos/nav+bar+background.png");
+  background-color: #47596F;
   color: #D5C5AE;
   text-shadow: 2px 2px #312229;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -7,7 +7,7 @@
 }
 
 .custom-top-bar img{
-  max-width: 7em;
+  max-width: 10em;
   max-height: 10em;
   margin-right: 1em;
 }
@@ -31,8 +31,8 @@
   float: right;
   background-color: #312229;
   /* #B18653 */
-  margin: 1rem;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  margin: .5rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
   position: 1rem;
   text-decoration: double;
   border: solid #D5C5AE 0.1em;
@@ -59,9 +59,9 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #47596F;
   color: white;
-  margin: 1rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  position: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: double;
   border: solid #D5C5AE 0.1em;
 }
@@ -79,7 +79,9 @@ label {
 }
 
 .footer-font {
-  color: #312229;
+  text-align: right;
+  margin: 1em;
+  color: #47596F;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
@@ -110,12 +112,13 @@ html, body {
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
-  width: 50%;
-  margin-bottom: 5%;
-  margin-left: 25%;
-  margin-right: 25%;
-  display: inline-block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: auto;
+  margin-bottom: 2rem;
+  width: 60%;
   text-align: center;
 }
 
@@ -178,6 +181,8 @@ input[type=text], select, textarea {
   box-sizing: border-box; /* Make sure that padding and width stays in place */
   margin-top: 6px; /* Add a top margin */
   margin-bottom: 16px; /* Bottom margin */
+  margin-left: 1px;
+  margin-right: 1px;
   resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
@@ -219,6 +224,11 @@ input[type=checkbox], select, textarea {
   text-align: left;
 }
 
+.justify {
+  text-align: justify;
+  margin: 2rem;
+}
+
 input[type=submit], select, textarea {
   display: block;
   float: left;
@@ -240,6 +250,7 @@ input[type=submit]:hover{
 
 div .container-container{
   background-color: #f2f2f2;
+  padding: 1rem;
 }
 
 .blur-header{
@@ -263,4 +274,29 @@ a .space{
 .myVideo {
   width: 100%;
   border: #f2f2f2 solid 4rem;
+}
+
+.center-button{
+  position: relative;
+}
+
+.vertical-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-line-break{
+  margin: 0em;
+}
+
+.line-break{
+  margin-bottom: 2rem;
+}
+
+.header-text{
+  margin: 0em;
+  display: flex;
+  justify-content: right;
+  align-items: right;
 }

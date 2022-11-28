@@ -46,15 +46,15 @@ const AssignmentIndexTile = (props) => {
 
   return(
     <div className="callout left">
-      <h4>Assignment: {props.assignment.name}</h4>
+      <h4 className="center">{props.assignment.name}</h4>
       {pastDue}
-      <p>Due Date: {formattedDueDate}</p>
+      <p>Due {formattedDueDate}</p>
       {status}
-      <p> Notes on Assignment: {note}</p>
+      <p className="no-line-break"> Notes: </p><p>{note}</p>
       <div className="callout container-container">
-        <h5 className="center"> Measures For Success</h5>
-        <ul>
-          <li> Page Count: {page_count}</li>
+        <h5 className="center line-break"> Measures For Success</h5>
+        <ul className="calendar-ul">
+          <li className="line-break"> Page Count: {page_count}</li>
           <li> Word Count: {word_count}</li>
         </ul>
       </div>

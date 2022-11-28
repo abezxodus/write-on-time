@@ -1,37 +1,38 @@
-<h1 class=blur-header>Confirmation of Assignment to be Added</h1>
+<h1 class=blur-header>Confirmation</h1>
 
 <div class="container">
-    <h2>Current Project: <%=@project.name%></h2>
-    <p>Project Description: <%=@project.description%></p>
+    <h2><%=@project.name%></h2>
+    <p>"<%=@project.description%>"</p>
   <div class="callout left">
-
-  <div>
-    <h3>Current Assignment: <%=@assignment.name%></h3>
+    <p class="no-line-break">Current Assignment:</p><p><%=@assignment.name%></p>
     <% if(@assignment.note == nil) || (@assignment.note == "")%>
-      <p> Notes on Assignment: N/A</p>
+      <p class="no-line-break">Notes on Assignment:</p><p>N/A</p>
     <% else %>
-      <p> Notes on Assignment: <%=@assignment.note%></p>
+      <p> Notes on Assignment:</p><p><%=@assignment.note%></p>
     <% end %>
-  </div>
 
-  <div class="container-container center">
-    <h4> Measures For Success</h4>
-    <ul class="calendar-ul">
-      <% if(@assignment.page_count_req == "") || (@assignment.page_count_req == nil) || (@assignment.page_count_req == "0") %>
-        <li> Page Count: N/A</li>
-      <% else %>
-        <li> Page Count: <%=@assignment.page_count_req%></p>
-      <% end %>
-      <% if(@assignment.word_count_req == "") || (@assignment.word_count_req == nil) || (@assignment.word_count_req == "0") %>
-        <li> Word Count: N/A</li>
-      <% else %>
-        <li> Word Count: <%=@assignment.word_count_req%></li>
-      <% end %>
-    </ul>
+    <div class="container-container center">
+      <h4> Measures For Success</h4>
+      <ul class="calendar-ul left callout">
+        <% if(@assignment.page_count_req == "") || (@assignment.page_count_req == nil) || (@assignment.page_count_req == "0") %>
+          <li> Page Count:</li><li class="line-break"> N/A</li>
+        <% else %>
+          <li> Page Count:</li><li class="line-break"> <%=@assignment.page_count_req%></li>
+        <% end %>
+        <% if(@assignment.word_count_req == "") || (@assignment.word_count_req == nil) || (@assignment.word_count_req == "0") %>
+          <li> Word Count:</li><li class="line-break"> N/A</li>
+        <% else %>
+          <li> Word Count:</li><li class="line-break"> <%=@assignment.word_count_req%></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-
+  <div class="center-button">
+    <div class="vertical-center">
+      <%= form_tag new_event_url do %>
+        <%= submit_tag 'Add event' %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<%= form_tag new_event_url do %>
-  <%= submit_tag 'Add event' %>
-<% end %>

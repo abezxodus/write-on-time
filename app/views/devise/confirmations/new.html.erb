@@ -1,4 +1,4 @@
-<div class="container-2">
+<div class="container">
 
 <h2>Resend confirmation instructions</h2>
 
@@ -10,8 +10,10 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+  <div class="center-button">
+    <div class="actions vertical-center">
+      <%= f.submit "Resend confirmation instructions" %>
+    </div>
   </div>
 <% end %>
 
