@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :username, presence: true
 
+  has_many :statistics
   has_many :projects
   has_many :assignments, through: :projects
 

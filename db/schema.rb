@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_154230) do
+ActiveRecord::Schema.define(version: 2022_11_27_211056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,25 @@ ActiveRecord::Schema.define(version: 2022_11_23_154230) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "statistics", force: :cascade do |t|
+    t.integer "total_projects", default: 0, null: false
+    t.integer "open_projects", default: 0, null: false
+    t.integer "closed_projects", default: 0, null: false
+    t.integer "total_assignments", default: 0, null: false
+    t.integer "total_open_assignments", default: 0, null: false
+    t.integer "open_assignments", default: 0, null: false
+    t.integer "open_past_due_assignments", default: 0, null: false
+    t.integer "total_closed_assignments", default: 0, null: false
+    t.integer "closed_assignments", default: 0, null: false
+    t.integer "closed_late_assignments", default: 0, null: false
+    t.integer "total_words", default: 0, null: false
+    t.integer "total_pages", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_statistics_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -51,15 +70,18 @@ ActiveRecord::Schema.define(version: 2022_11_23_154230) do
     t.string "phone_number"
     t.string "default_picture", default: "https://write-on-time.s3.amazonaws.com/logos/penIcon.png", null: false
     t.string "profile_picture"
-    t.integer "streak_count"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "streak_count", default: 0, null: false
+    t.integer "total_projects", default: 0, null: false
     t.integer "total_assignments", default: 0, null: false
     t.integer "total_on_time", default: 0, null: false
     t.integer "total_late", default: 0, null: false
+    t.integer "word_count", default: 0, null: false
+    t.integer "page_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

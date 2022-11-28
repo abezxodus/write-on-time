@@ -4,6 +4,8 @@ import NewAssignmentFormTile from "./NewAssignmentFormTile"
 import FetchProjects from "./services/FetchProjects"
 import GoogleCalendarSetup from "./GoogleCalendarSetup"
 import FetchPostAssignment from "./services/FetchPostAssignment"
+import StatsContainer from "./StatsContainer"
+
 import { Link } from "react-router-dom"
 
 const DashboardContainer = (props) => {
@@ -104,6 +106,9 @@ const DashboardContainer = (props) => {
   return (
     <div>
       {dashboardDisplay}
+      <StatsContainer
+        projectsPack={projects}
+      />
     </div>
   )
 }
