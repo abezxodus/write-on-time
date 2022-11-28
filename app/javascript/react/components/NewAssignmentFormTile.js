@@ -100,18 +100,6 @@ const NewAssignmentFormTile = (props) => {
                 <input id="word_count_req" type="text" name="word_count_req" onChange={handleInputChangeAssignment} value={newAssignment.word_count_req}/>
               </label>
 
-              {/* <div className="cell large-6">
-                <label className="cell" htmlFor="text_reminder">
-                Text Reminder
-                <input id="text_reminder" type="checkbox" name="text_reminder" onChange={handleInputChangeAssignment} value={newAssignment.text_reminder}/>
-                </label>
-
-                <label className="cell" htmlFor="email_reminder">
-                Email Reminder
-                <input id="email_reminder" type="checkbox" name="email_reminder" onChange={handleInputChangeAssignment} value={newAssignment.email_reminder}/>
-                </label>
-              </div> */}
-
               <div>
                 <input className="form-button cell large-2" type="submit" value="Set Deadline"/>
               </div>

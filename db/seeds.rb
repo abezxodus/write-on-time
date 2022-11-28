@@ -6,7 +6,10 @@
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
 
-user1 = User.first
+# user2 = User.last
+
+
+user2 = User.create!(first_name: "Jane", last_name: "Doe", username: "thedough", email: "email@email.com", password: "Rocky11203!")
 
 stats1 = Statistic.create!(
   total_projects: 5,
@@ -21,12 +24,8 @@ stats1 = Statistic.create!(
   closed_late_assignments: 14,
   total_words: 10300,
   total_pages: 141,
-  user: user1
+  user: user2
 )
-
-# user1 = User.create!(first_name: "Michael", last_name: "Trainor", username: "abezxodus", email: "michaeltrainor.mt@gmail.com", password: "Straw6erry!", phone_number: "+17813084346")
-# user2 = User.create!(first_name: "Jane", last_name: "Doe", username: "thedough", email: "secondsprior@gmail.com", password: "Rocky11203!")
-
 # project1 = Project.create!(name: "My Novel", description: "Finally getting around to writing my story.", user: user1)
 # project2 = Project.create!(name: "Book of Poems", description: "A poem every week until I've got a book.", user: user2)
 # project3 = Project.create!(name: "Weekly Blog", description: "Journaling, but online", open: false, user: user2)

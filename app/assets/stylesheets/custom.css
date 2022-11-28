@@ -78,6 +78,11 @@ label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+.footer-font {
+  color: #312229;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -256,7 +261,6 @@ a .space{
 }
 
 .myVideo {
-  /* position: fixed; */
   width: 100%;
   border: #f2f2f2 solid 4rem;
 }

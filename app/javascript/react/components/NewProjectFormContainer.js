@@ -10,17 +10,12 @@ const NewProjectFormContainer = (props) => {
   const [savedProject, setSavedProject] = useState({})
   const [savedAssignment, setSavedAssignment] = useState({})
   const [backendErrors, setBackendErrors] = useState({})
-  // const [savedProject, setSavedProject] = useState({id: "something", name: "Placeholder", description: "Placeholder"})
-  // const [savedAssignment, setSavedAssignment] = useState({
-  //   id: "something", name: "Placeholder", note: "Placeholder", text_reminder: false, email_reminder: false, open: true, past_due: true, page_count_req: "10", word_count_req: "5000"
-  // })
 
   useEffect(() => {
     if(props.project){
       setSavedProject(props)
     }
   }, [])
-
 
   const addProject = async (formPayload) => {
     const responseBody = await FetchPostProject.addProject(formPayload)

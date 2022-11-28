@@ -88,10 +88,3 @@ class HomesController < ApplicationController
     }
   end
 end
-
-# rescue Google::Apis::AuthorizationError
-#   response = client.refresh!
-
-#   session[:authorization] = session[:authorization].merge(response)
-
-#   retry
