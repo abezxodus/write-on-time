@@ -6,6 +6,24 @@
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
 
+user1 = User.first
+
+stats1 = Statistic.create!(
+  total_projects: 5,
+  open_projects: 1,
+  closed_projects: 4,
+  total_assignments: 15,
+  total_open_assignments: 0,
+  open_assignments: 0,
+  open_past_due_assignments: 0,
+  total_closed_assignments: 15,
+  closed_assignments: 1,
+  closed_late_assignments: 14,
+  total_words: 10300,
+  total_pages: 141,
+  user: user1
+)
+
 # user1 = User.create!(first_name: "Michael", last_name: "Trainor", username: "abezxodus", email: "michaeltrainor.mt@gmail.com", password: "Straw6erry!", phone_number: "+17813084346")
 # user2 = User.create!(first_name: "Jane", last_name: "Doe", username: "thedough", email: "secondsprior@gmail.com", password: "Rocky11203!")
 

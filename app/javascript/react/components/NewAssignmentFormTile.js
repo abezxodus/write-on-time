@@ -6,8 +6,8 @@ const NewAssignmentFormTile = (props) => {
     name: "",
     due_date: "",
     note: "",
-    page_count_req: "",
-    word_count_req: "",
+    page_count_req: "0",
+    word_count_req: "0",
     email_reminder: false,
     text_reminder: false,
     project_id: props.savedProject.id
@@ -31,12 +31,20 @@ const NewAssignmentFormTile = (props) => {
 
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["name", "due_date"]
+    const requiredFields = ["name", "due_date", "page_count_req", "word_count_req"]
     requiredFields.forEach(field => {
       if (newAssignment[field].trim() === "") {
         submitErrors = {
           ...submitErrors,
           [field]: "is blank"
+        }
+      }
+      if(field == "page_count_req" || field == "word_count_req"){
+        if (isNaN(newAssignment[field].trim())) {
+          submitErrors = {
+            ...submitErrors,
+            [field]: "is either not a number or contains a comma."
+          }
         }
       }
     })
@@ -61,9 +69,6 @@ const NewAssignmentFormTile = (props) => {
   return(
       <div>
         <h2 className="blur-header">Create Assignment</h2>
-        <div>
-
-        </div>
         <div className="container">
           <h4 className="cell text-center">{props.savedProject.name}</h4>
           <div className="cell large-5">

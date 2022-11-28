@@ -40,12 +40,20 @@ const AssignmentsEditFormTile = (props) => {
 
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["name", "due_date"]
+    const requiredFields = ["name", "due_date", "page_count_req", "word_count_req"]
     requiredFields.forEach(field => {
       if (props.assignment[field].trim() === "") {
         submitErrors = {
           ...submitErrors,
           [field]: "is blank"
+        }
+      }
+      if(field == "page_count_req" || field == "word_count_req"){
+        if (isNaN(props.assignment[field].trim())) {
+          submitErrors = {
+            ...submitErrors,
+            [field]: "is either not a number or contains a comma."
+          }
         }
       }
     })
