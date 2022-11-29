@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2022_11_23_154230) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "closeable", default: false
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

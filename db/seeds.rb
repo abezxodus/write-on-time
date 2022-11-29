@@ -38,3 +38,4 @@ blog = User.first.projects[2]
 novel[:closeable] = false
 poems[:closeable] = false
 blog[:closeable] = true
+

@@ -1,3 +1,5 @@
+require 'approvedemails.rb'
+
 class Api::V1::AssignmentsController < ApiController
   before_action :authenticate_user!
 
@@ -11,9 +13,8 @@ class Api::V1::AssignmentsController < ApiController
 
   def create
     assignment = Assignment.new(assignment_params)
-    if(current_user.email.include?("michaeltrainor.mt@gmail.com"))
-      assignment[:google_calendar] = true
-    end
+    email = ApprovedEmails.new(current_user.email)
+    assignment[:google_calendar] = email.emailcheck
     if(assignment.save)
       render json: assignment
     else
@@ -29,6 +30,16 @@ class Api::V1::AssignmentsController < ApiController
   def update
     assignment = Assignment.find(params[:id])
     assignment.update(assignment_params)
+
+    current_project = assignment.project
+    projectCloseable = true
+    current_project.assignments.each do |assignment|
+      if(assignment.open == true)
+        projectCloseable = false
+      end
+    end
+    current_project.update(closeable: projectCloseable)
+
     streak_count = current_user.streak_count
     total_assignments = current_user.total_assignments + 1
     total_on_time = current_user.total_on_time
