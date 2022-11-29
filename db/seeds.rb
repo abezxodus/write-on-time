@@ -30,3 +30,11 @@
 # assignment5 = Assignment.create!(name: "Second Poem", due_date: "2022-11-15T00:00:00.000Z", open: false, project: project2)
 # assignment6 = Assignment.create!(name: "Third Poem", due_date: "2022-12-22T00:00:00.000Z", project: project2)
 # assignment7 = Assignment.create!(name: "First Blog", due_date: "2022-11-15T00:00:00.000Z", page_count_req: "5", word_count_req: "2500", open: false, project: project3)
+
+novel = User.first.projects[0]
+poems = User.first.projects[1]
+blog = User.first.projects[2]
+
+novel[:closeable] = false
+poems[:closeable] = false
+blog[:closeable] = true
