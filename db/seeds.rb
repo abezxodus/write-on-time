@@ -20,7 +20,7 @@ user5 = User.create!(first_name: "John",
                     page_count: 5)
 
 project1 = Project.create!(name: "My Novel", description: "Finally getting around to writing my story.", user: user5, closeable: false)
-project2 = Project.create!(name: "Book of Poems", description: "A poem every week until I've got a book.", user: user5, closeable: closeable)
+project2 = Project.create!(name: "Book of Poems", description: "A poem every week until I've got a book.", user: user5, closeable: false)
 project3 = Project.create!(name: "Weekly Blog", description: "Journaling, but online", open: false, user: user5)
 
 assignment1 = Assignment.create!(name: "Outline", due_date: "2022-11-01T00:00:00.000Z", note: "Figuring out the plot", email_reminder: true, text_reminder: true, open: false, past_due: true, project: project1)
