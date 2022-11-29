@@ -5,8 +5,13 @@ const ProjectIndexTile = (props) => {
   let status
   let editDisplay
   if(props.project.open == true){
-    status = "Open"
-    editDisplay = <Link to={`/projects/${props.project.id}/edit`}>Edit or Close</Link>
+    if(props.project.closeable == true){
+      status = "Open"
+      editDisplay = <Link to={`/projects/${props.project.id}/edit`}>Edit or Close</Link>
+    } else {
+      status = "Open"
+      editDisplay = <Link to={`/projects/${props.project.id}/edit`}>Edit</Link>
+    }
   } else {
     status = "Closed"
     editDisplay = <Link to={`/projects/${props.project.id}/edit`}>Edit or Reopen</Link>

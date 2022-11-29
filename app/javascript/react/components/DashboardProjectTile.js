@@ -14,6 +14,13 @@ const DashboardProjectTile = (props) => {
     }
   })
 
+  let editLink
+  if(props.project.closeable){
+    editLink = <Link to={`/projects/${props.project.id}/edit`}>Edit or Close Project</Link>
+  } else {
+    editLink = <Link to={`/projects/${props.project.id}/edit`}>Edit Project</Link>
+  }
+
   const submitHandler = async (event) => {
     event.preventDefault()
     props.setSavedProject(props.project)
@@ -33,7 +40,7 @@ const DashboardProjectTile = (props) => {
           </form>
           <br></br>
           <br></br>
-          <Link to={`/projects/${props.project.id}/edit`}>Edit or Close Project</Link>
+          {editLink}
           <br></br>
           <br></br>
         </div>

@@ -27,6 +27,14 @@ const ProjectsEditFormTile = (props) => {
     checkedStatus = false
   }
 
+  let closeOption
+  if(props.project.closeable == true){
+    closeOption = <label className="cell large-4" htmlFor="open">
+                    Close Project?
+                    <input id="open" type="checkbox" name="open" onChange={handleInputChangeProject} checked={checkedStatus}/>
+                  </label>
+  }
+
   const submitHandler = async (event) => {
     event.preventDefault()
     if(validForSubmission()){
@@ -70,10 +78,7 @@ const ProjectsEditFormTile = (props) => {
           {status}
         </label>
 
-        <label className="cell large-4" htmlFor="open">
-          Close Project?
-          <input id="open" type="checkbox" name="open" onChange={handleInputChangeProject} checked={checkedStatus}/>
-        </label>
+      {closeOption}
 
         <div className="center-button">
           <div className="vertical-center">
