@@ -7,7 +7,12 @@ const ProjectShowTile = (props) => {
   let editDisplay
   if(props.projectPackage){
     if(props.projectPackage.open == true){
-      editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Close Project</Link>
+      if(props.projectPackage.closeable ==true){
+        editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Close Project</Link>
+      } else {
+        editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit Project</Link>
+      }
+
     } else {
       editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Reopen Project</Link>
     }

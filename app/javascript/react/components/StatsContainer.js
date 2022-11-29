@@ -1,9 +1,7 @@
 import React from "react"
-// import { Chart } from "react-google-charts"
+import StatsPieChartTile from "./StatsPieChartTile"
 
 const StatsContainer = props => {
-  
-  let openAssignments = 0
   let openPastDueAssignments = 0
   let openOnTimeAssignments = 0
   let closedAssignments = 0
@@ -17,7 +15,6 @@ const StatsContainer = props => {
     props.projectsPack.forEach((assignmentPack) => {
       assignmentPack.assignments.forEach((assignment) => {
         if(assignment.open == true){
-          openAssignments += 1
           if(assignment.past_due == true){
             openPastDueAssignments += 1
           } else {
@@ -43,25 +40,29 @@ const StatsContainer = props => {
   }
 
   return (
-      <div className="container">
-        <h3>Stats</h3>
-        <div className="callout grid-x">
+    <div className="container">
+      <h3>Stats</h3>
+      <div className="callout">
+      <StatsPieChartTile
+        openOnTimeAssignments={openOnTimeAssignments}
+        openPastDueAssignments={openPastDueAssignments}
+        closedLateAssignments={closedLateAssignments}
+        closedOnTimeAssignments={closedOnTimeAssignments}
+        successRate={successRate}
+      />
+        <div className="container-container">
+          <p className="no-line-break">Submitted Late</p>
+          <p>{closedLateAssignments}</p>
+          <p className="no-line-break">Submitted On Time</p>
+          <p>{closedOnTimeAssignments}</p>
+          <p className="no-line-break">Success Rate</p>
+          <p>{successRate}%</p>
           <div className="cell">
-          <p>Completed: {closedAssignments}</p>
-          <div className="container-container">
-            <ul className="calendar-ul">
-              <li>Submitted On Time: {closedOnTimeAssignments}</li>
-              <li>Submitted Late: {closedLateAssignments}</li>
-            </ul>
-          <br></br>
-          <p>Success Rate: {successRate}%</p>
-          </div>
-          </div>
-          <div className="cell">
-            <p>Total Words: {totalWords}</p>
-            <p>Total Pages: {totalPages}</p>
+              <p className="line-break">Total Words: {totalWords}</p>
+              <p>Total Pages: {totalPages}</p>
           </div>
         </div>
+      </div>
     </div>
   )
 }
