@@ -5,6 +5,11 @@ class Api::V1::ProjectsController < ApiController
     projects = current_user.projects.reverse()
     projectsArray = []
     projects.each do |project|
+      project.assignments.each do |assignment|
+        if(assignment.open == true && assignment.past_due == false && assignment.due_date < Date.today)
+          assignment.update(past_due: true)
+        end
+      end
       projectHash = {project: project, assignments: project.assignments}
       projectsArray.push(projectHash)
     end
@@ -15,7 +20,7 @@ class Api::V1::ProjectsController < ApiController
   def show
     project = current_user.projects.find(params[:id])
     project.assignments.each do |assignment|
-      if(assignment.open == true && assignment.due_date < Date.today && assignment.past_due == true)
+      if(assignment.open == true && assignment.past_due == false && assignment.due_date < Date.today)
         assignment.update(past_due: true)
       end
     end
