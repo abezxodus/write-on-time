@@ -5,7 +5,7 @@ class Api::V1::AssignmentsController < ApiController
 
   def show
     assignment = Assignment.find(params[:id])
-    if(assignment.open == true && assignment.due_date < Date.today && assignment.past_due == true)
+    if(assignment.open == true && assignment.past_due == false && assignment.due_date < Date.today)
       assignment.update(past_due: true)
     end
     render json: assignment

@@ -32,7 +32,7 @@ const AssignmentShowTile = (props) => {
   }
 
   return(
-    <div className="container-5">
+    <div className="container">
       <h4>Assignment: {props.assignment.name}</h4>
       <div className="callout">
         {pastDue}
