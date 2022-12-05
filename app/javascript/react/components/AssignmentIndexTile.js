@@ -41,7 +41,7 @@ const AssignmentIndexTile = (props) => {
   }
 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-  const due_date = new Date(props.assignment.due_date)
+  const due_date = new Date(`${props.assignment.due_date} EST`)
   const formattedDueDate = due_date.toLocaleDateString("en-US", options)
 
   return(
