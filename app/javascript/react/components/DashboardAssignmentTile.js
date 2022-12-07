@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"
 const DashboardAssignmentTile = (props) => {
 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-  const due_date = new Date(`${props.assignment.due_date} EST`)
+  const due_date = new Date(props.assignment.due_date)
+  due_date.setMinutes(due_date.getMinutes() + due_date.getTimezoneOffset())
   const formattedDueDate = due_date.toLocaleDateString("en-US", options)
 
   let pastDue
