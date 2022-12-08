@@ -7,7 +7,10 @@ class ApprovedEmails
   end
 
   def emailcheck
-    valid_emails = ["michaeltrainor.mt@gmail.com", "testingwriteontime@gmail.com", "writeontimereminder@gmail.com"]
+    valid_emails = ["michaeltrainor.mt@gmail.com", 
+                    "testingwriteontime@gmail.com", 
+                    "writeontimereminder@gmail.com", 
+                    "shiyan@bu.edu"]
     valid_emails.include?(email_string)
   end
 end

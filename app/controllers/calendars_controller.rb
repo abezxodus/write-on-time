@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class CalendarsController < ApplicationController
   def index
   end
 
