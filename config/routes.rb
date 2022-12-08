@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   get '/projects/:id/edit', to: 'static_pages#index'
   get '/new', to: 'static_pages#index'
   
-  get '/redirect', to: 'homes#redirect', as: 'redirect'
-  get '/callback', to: 'homes#callback', as: 'callback'
-  get '/calendars', to: 'homes#calendars', as: 'calendars'
-  get '/events/:calendar_id', to: 'homes#events', as: 'events', calendar_id: /[^\/]+/
-  post '/events/:calendar_id', to: 'homes#new_event', as: 'new_event', calendar_id: /[^\/]+/
+  get '/redirect', to: 'calendars#redirect', as: 'redirect'
+  get '/callback', to: 'calendars#callback', as: 'callback'
+  get '/calendars', to: 'calendars#calendars', as: 'calendars'
+  get '/events/:calendar_id', to: 'calendars#events', as: 'events', calendar_id: /[^\/]+/
+  post '/events/:calendar_id', to: 'calendars#new_event', as: 'new_event', calendar_id: /[^\/]+/
 
   put '/assignments/:id/api/v1/assignments/:id', to: 'api/v1/assignments#update'
   put '/projects/:id/api/v1/projects/:id', to: 'api/v1/projects#update'
