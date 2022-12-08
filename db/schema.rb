@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_154230) do
+ActiveRecord::Schema.define(version: 2022_12_08_210253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,90 @@ ActiveRecord::Schema.define(version: 2022_11_23_154230) do
     t.index ["project_id"], name: "index_assignments_on_project_id"
   end
 
+  create_table "badges", force: :cascade do |t|
+    t.string "word_badge", default: "", null: false
+    t.string "page_badge", default: "", null: false
+    t.string "streak_badge", default: "", null: false
+    t.string "total_assignments_badge", default: "", null: false
+    t.string "on_time_assignments_badge", default: "", null: false
+    t.bigint "stat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stat_id"], name: "index_badges_on_stat_id"
+  end
+
+  create_table "page_count_timelines", force: :cascade do |t|
+    t.date "submission_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "start_count", default: 0, null: false
+    t.integer "new_page_count", default: 0, null: false
+    t.integer "end_count", default: 0, null: false
+    t.bigint "stat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stat_id"], name: "index_page_count_timelines_on_stat_id"
+  end
+
+  create_table "project_badges", force: :cascade do |t|
+    t.string "word_badge", default: "", null: false
+    t.string "page_badge", default: "", null: false
+    t.string "streak_badge", default: "", null: false
+    t.string "total_assignments_badge", default: "", null: false
+    t.string "on_time_assignments_badge", default: "", null: false
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_badges_on_project_id"
+  end
+
+  create_table "project_page_count_timelines", force: :cascade do |t|
+    t.date "submission_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "start_count", default: 0, null: false
+    t.integer "new_page_count", default: 0, null: false
+    t.integer "end_count", default: 0, null: false
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_page_count_timelines_on_project_id"
+  end
+
+  create_table "project_stats", force: :cascade do |t|
+    t.integer "projects_open", default: 0, null: false
+    t.integer "projects_closed", default: 0, null: false
+    t.integer "assignments_open_on_track", default: 0, null: false
+    t.integer "assignments_open_past_due", default: 0, null: false
+    t.integer "assignments_closed_on_time", default: 0, null: false
+    t.integer "assignments_closed_late", default: 0, null: false
+    t.integer "total_word_count", default: 0, null: false
+    t.integer "total_page_count", default: 0, null: false
+    t.integer "submission_streak", default: 0, null: false
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_stats_on_project_id"
+  end
+
+  create_table "project_submission_streak_timelines", force: :cascade do |t|
+    t.date "submission_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "start_count", default: 0, null: false
+    t.boolean "new_submission", default: true, null: false
+    t.integer "end_count", default: 0, null: false
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_submission_streak_timelines_on_project_id"
+  end
+
+  create_table "project_word_count_timelines", force: :cascade do |t|
+    t.date "submission_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "start_count", default: 0, null: false
+    t.integer "new_word_count", default: 0, null: false
+    t.integer "end_count", default: 0, null: false
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_word_count_timelines_on_project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -41,6 +125,33 @@ ActiveRecord::Schema.define(version: 2022_11_23_154230) do
     t.datetime "updated_at", null: false
     t.boolean "closeable", default: false
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "projects_open", default: 0, null: false
+    t.integer "projects_closed", default: 0, null: false
+    t.integer "assignments_open_on_track", default: 0, null: false
+    t.integer "assignments_open_past_due", default: 0, null: false
+    t.integer "assignments_closed_on_time", default: 0, null: false
+    t.integer "assignments_closed_late", default: 0, null: false
+    t.integer "total_word_count", default: 0, null: false
+    t.integer "total_page_count", default: 0, null: false
+    t.integer "submission_streak", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stats_on_user_id"
+  end
+
+  create_table "submission_streak_timelines", force: :cascade do |t|
+    t.date "submission_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "start_count", default: 0, null: false
+    t.boolean "new_submission", default: true, null: false
+    t.integer "end_count", default: 0, null: false
+    t.bigint "stat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stat_id"], name: "index_submission_streak_timelines_on_stat_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,6 +177,17 @@ ActiveRecord::Schema.define(version: 2022_11_23_154230) do
     t.integer "page_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "word_count_timelines", force: :cascade do |t|
+    t.date "submission_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "start_count", default: 0, null: false
+    t.integer "new_word_count", default: 0, null: false
+    t.integer "end_count", default: 0, null: false
+    t.bigint "stat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stat_id"], name: "index_word_count_timelines_on_stat_id"
   end
 
 end

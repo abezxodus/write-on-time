@@ -7,10 +7,15 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :username, presence: true
 
+  has_one :stat
+  has_many :page_count_timelines, through: :stat
+  has_many :word_count_timelines, through: :stat
+  has_many :submission_streak_timelines, through: :stat
+  has_many :badges, through: :stat
+
   has_many :projects
   has_many :assignments, through: :projects
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
-
