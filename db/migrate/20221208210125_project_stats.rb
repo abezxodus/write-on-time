@@ -1,8 +1,6 @@
 class ProjectStats < ActiveRecord::Migration[5.2]
   def change
     create_table :project_stats do |t|
-      t.integer :projects_open, null: false, default: 0
-      t.integer :projects_closed, null: false, default: 0
       t.integer :assignments_open_on_track, null: false, default: 0
       t.integer :assignments_open_past_due, null: false, default: 0
       t.integer :assignments_closed_on_time, null: false, default: 0

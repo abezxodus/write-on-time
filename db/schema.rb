@@ -79,8 +79,6 @@ ActiveRecord::Schema.define(version: 2022_12_08_210253) do
   end
 
   create_table "project_stats", force: :cascade do |t|
-    t.integer "projects_open", default: 0, null: false
-    t.integer "projects_closed", default: 0, null: false
     t.integer "assignments_open_on_track", default: 0, null: false
     t.integer "assignments_open_past_due", default: 0, null: false
     t.integer "assignments_closed_on_time", default: 0, null: false
