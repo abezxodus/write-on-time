@@ -100,7 +100,7 @@ const AssignmentsEditFormTile = (props) => {
   
     <div className="cell center">
       <label className="cell large-4" htmlFor="open">
-        Close Project?
+        Close Assignment?
         <input id="open" type="checkbox" name="open" onChange={handleInputChangeAssignment}/>
       </label>
     </div>

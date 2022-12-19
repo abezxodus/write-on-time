@@ -4,7 +4,8 @@ import NewAssignmentFormTile from "./NewAssignmentFormTile"
 import FetchProjects from "./services/FetchProjects"
 import GoogleCalendarSetup from "./GoogleCalendarSetup"
 import FetchPostAssignment from "./services/FetchPostAssignment"
-import StatsContainer from "./StatsContainer"
+import StatsSummaryTile from "./StatsSummaryTile"
+import FetchStats from "./services/FetchStats"
 
 import { Link } from "react-router-dom"
 
@@ -14,6 +15,7 @@ const DashboardContainer = (props) => {
   const [backendErrors, setBackendErrors] = useState({})
   const [savedProject, setSavedProject] = useState({})
   const [savedAssignment, setSavedAssignment] = useState({})
+  const [stats, setStats] = useState({})
 
   const fetchDashboard = async () => {
     const parsedProjects = await FetchProjects.getProjects()
@@ -29,8 +31,18 @@ const DashboardContainer = (props) => {
     } 
   }
 
+  const fetchUserStats = async () => {
+    const url = props.match.params.id
+    const parsedStats = await FetchStats.getStats(url)
+    setStats(parsedStats[0])
+  }
+
   useEffect(() => {
     fetchDashboard()
+  }, [])
+
+  useEffect(() => {
+    fetchUserStats()
   }, [])
 
   let mappedErrors
@@ -83,6 +95,11 @@ const DashboardContainer = (props) => {
     dashboardDisplay = <div>
                           <h2 className="blur-header">User Dashboard</h2>
                           <div className="container">
+                            <StatsSummaryTile
+                              stats={stats["stats"]}
+                            />
+                          </div>
+                          <div className="container">
                             <h3>Open Projects</h3>
                             <div className="line-break">
                               <Link to="/new">Create a New Project</Link>
@@ -93,6 +110,11 @@ const DashboardContainer = (props) => {
   } else {
     dashboardDisplay = <div>
                           <h2 className="blur-header">User Dashboard</h2>
+                          <div className="container">
+                            <StatsSummaryTile
+                              stats={stats["stats"]}
+                            />
+                          </div>
                           <div className="container">
                             <h3>Open Projects</h3>
                             <div className="line-break">
@@ -106,9 +128,6 @@ const DashboardContainer = (props) => {
   return (
     <div>
       {dashboardDisplay}
-      <StatsContainer
-        projectsPack={projects}
-      />
     </div>
   )
 }

@@ -8,6 +8,7 @@ import ProjectIndexContainer from './ProjectIndexContainer'
 import ProjectShowContainer from './ProjectShowContainer'
 import ProjectsEditFormContainer from './ProjectsEditFormContainer'
 import DashboardLandingTile from './DashboardLandingTile'
+import StatsContainer from './StatsContainer'
 
 export const App = (props) => {
   return (
@@ -21,6 +22,7 @@ export const App = (props) => {
         <Route exact path="/projects/:id" component={ProjectShowContainer}/>
         <Route exact path="/assignments/:id/edit" component={AssignmentsEditFormContainer}/>
         <Route exact path="/assignments/:id" component={AssignmentShowContainer}/>
+        <Route exact path="/stats" component={StatsContainer}/>
       </Switch>
     </BrowserRouter>
   )

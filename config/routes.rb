@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'static_pages#index'
   get '/userpage', to: 'static_pages#index'
+  get '/stats', to: 'static_pages#index'
   get '/projects', to: 'static_pages#index'
   get '/projects/:id', to: 'static_pages#index'
   get '/assignments/:id', to: 'static_pages#index'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :assignments, only: [:show, :create, :edit, :update]
       resources :projects, only: [:index, :show, :create, :edit, :update]
+      resources :stats, only: [:index]
     end
   end
 

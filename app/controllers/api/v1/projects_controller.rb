@@ -32,6 +32,8 @@ class Api::V1::ProjectsController < ApiController
     newProject = Project.new(project_params)
     newProject.save
     current_user.projects.push(newProject)
+    new_open_projects = current_user.stat["projects_open"] + 1
+    current_user.stat.update(projects_open: new_open_projects)
     render json: newProject
   end
 
@@ -42,7 +44,20 @@ class Api::V1::ProjectsController < ApiController
 
   def update
     project = Project.find(params[:id])
+    before_open_status = project["open"]
     project.update(project_params)
+    after_open_status = project["open"]
+    if before_open_status != after_open_status
+      if project["open"] == false
+        new_open_projects = current_user.stat["projects_open"] - 1
+        new_closed_projects = current_user.stat["projects_closed"] + 1
+      else
+        new_open_projects = current_user.stat["projects_open"] + 1
+        new_closed_projects = current_user.stat["projects_closed"] - 1
+      end
+      current_user.stat.update(projects_open: new_open_projects, projects_closed: new_closed_projects)
+    end
+
     render json: project
   end
 
