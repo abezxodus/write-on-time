@@ -24,6 +24,7 @@
     <section class="top-bar-section custom-top-bar-section">
         <%- if current_user -%>
           <div class="header-text">  
+            <button><%= link_to 'Stats', "/stats"%></button>
             <button><%= link_to 'All Projects', "/projects"%></button>
             <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
           </div>
