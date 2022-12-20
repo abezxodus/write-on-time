@@ -36,6 +36,13 @@ const NewProjectFormTile = (props) => {
     return _.isEmpty(submitErrors)
   }
 
+  let backendErrorMessages
+  if(props.mappedErrors){
+    backendErrorMessages =  <div className="callout alert grid-x cell large-12">
+                              <ul className="calendar-ul">{props.mappedErrors}</ul>
+                            </div>
+  }
+
   return (
     <div>
       <h2 className="blur-header">Create Project</h2>
@@ -44,6 +51,7 @@ const NewProjectFormTile = (props) => {
           <ErrorList 
             errors={props.errors}
           />
+          {backendErrorMessages}
           <label className="cell large-6" htmlFor="name">
             *Name of Project
             <input id="name" type="text" name="name" onChange={handleInputChangeProject} value={newProject.name}/>

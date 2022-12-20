@@ -20,7 +20,11 @@ const NewProjectFormContainer = (props) => {
 
   const addProject = async (formPayload) => {
     const responseBody = await FetchPostProject.addProject(formPayload)
-    setSavedProject(responseBody)
+    if(responseBody["errors"]){
+      setBackendErrors(responseBody)
+    } else {
+      setSavedProject(responseBody)
+    }
   }
 
   const addAssignment = async (formPayload) => {
@@ -50,6 +54,7 @@ const NewProjectFormContainer = (props) => {
     assignmentForm = <GoogleCalendarSetup
       savedAssignment={savedAssignment}
       savedProject={savedProject}
+      mappedErrors={mappedErrors}
     />
   } else if (savedProject.id) {
     assignmentForm = <NewAssignmentFormTile

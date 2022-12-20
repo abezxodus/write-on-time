@@ -12,14 +12,18 @@ const StatsSummaryTile = (props) => {
     closedOnTimeAssignments = props.stats.assignments_closed_on_time
     closedAssignments = closedLateAssignments + closedOnTimeAssignments
     streak = props.stats.submission_streak
-    successRate = parseFloat((closedOnTimeAssignments/closedAssignments)*100.00).toFixed(2)
+    if(closedAssignments === 0){
+      successRate = "N/A (no assignments submitted yet.)"
+    }else{
+      successRate = `${parseFloat((closedOnTimeAssignments/closedAssignments)*100.00).toFixed(2)}%`
+    }
   }
 
   return (
     <div className="callout">
       <h3 className="line-break">User Stats Summary</h3>
       <p className="no-line-break">Success Rate</p>
-      <p>{successRate}%</p>
+      <p>{successRate}</p>
       <p className="no-line-break">Current Streak</p>
       <p>{streak}</p>
     </div>

@@ -30,11 +30,19 @@ class Api::V1::ProjectsController < ApiController
 
   def create
     newProject = Project.new(project_params)
-    newProject.save
-    current_user.projects.push(newProject)
-    new_open_projects = current_user.stat["projects_open"] + 1
-    current_user.stat.update(projects_open: new_open_projects)
-    render json: newProject
+    newProject["user_id"] = current_user.id
+    newProject["closeable"] = true
+    if(newProject.save)
+      if(current_user.projects.length == 1)
+        new_stat = Stat.create
+        new_stat.update(user_id: current_user.id)
+      end
+      new_open_projects = current_user.stat["projects_open"] + 1
+      current_user.stat.update(projects_open: new_open_projects)
+      render json: newProject
+    else
+      render json: { errors: newProject.errors.full_messages }
+    end
   end
 
   def edit

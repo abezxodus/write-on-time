@@ -57,7 +57,6 @@ const DashboardContainer = (props) => {
     })
   }
 
-
   let dashboardProjects
   let dashboardDisplay
 

@@ -22,6 +22,7 @@ class Api::V1::AssignmentsController < ApiController
     assignment[:google_calendar] = email.emailcheck
     if(assignment.save)
       new_assignments_open_on_track = current_user.stat["assignments_open_on_track"] + 1
+      assignment.project.update(closeable: false)
       current_user.stat.update(assignments_open_on_track: new_assignments_open_on_track)
       render json: assignment
     else
@@ -51,7 +52,7 @@ class Api::V1::AssignmentsController < ApiController
       total_word_count = current_user.stat["total_word_count"] + assignment.word_count_req.to_i
       total_page_count = current_user.stat["total_page_count"] + assignment.page_count_req.to_i
 
-      if(current_user.stat.timelines.last["year"] != Time.now.year || current_user.stat.timelines.last["month"] != Time.now.month)
+      if(current_user.stat.timelines.length == 0  || current_user.stat.timelines.last["year"] != Time.now.year || current_user.stat.timelines.last["month"] != Time.now.month)
         current_timeline = Timeline.create(year: Time.now.year,
                                     month: Time.now.month,
                                     words: total_word_count,

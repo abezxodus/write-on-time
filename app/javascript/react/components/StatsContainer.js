@@ -21,6 +21,37 @@ const StatsContainer = props => {
     fetchUserStats()
   }, [])
 
+  let closedAssignments = 0
+  if(stats["stats"]){
+    closedAssignments = stats.stats.assignments_closed_late + stats.stats.assignments_closed_on_time
+  }
+
+  let charts
+  if(closedAssignments > 0){
+    charts = <div>
+                <div className="container-container line-break">
+                <StatsPieChartTile
+                  stats={stats["stats"]}
+                />
+                </div>
+                <div className="callout">
+                  <StatsLineGraphTile
+                    timelines={timelines}
+                  />
+                </div>
+                <div className="container-container line-break">
+                  <StatsPageStepGraphTile
+                    timelines={timelines}
+                  />
+                </div>
+                <div className="callout">
+                  <StatsWordColumnGraphTile
+                    timelines={timelines}
+                  />
+                </div>
+              </div>
+  }
+
   return (
     <div>
       <h2 className="blur-header">Stats</h2>
@@ -28,26 +59,7 @@ const StatsContainer = props => {
         <StatsSummaryTile
             stats={stats["stats"]}
         />
-        <div className="container-container line-break">
-          <StatsPieChartTile
-            stats={stats["stats"]}
-          />
-        </div>
-        <div className="callout">
-          <StatsLineGraphTile
-            timelines={timelines}
-          />
-        </div>
-        <div className="container-container line-break">
-          <StatsPageStepGraphTile
-            timelines={timelines}
-          />
-        </div>
-        <div className="callout">
-          <StatsWordColumnGraphTile
-            timelines={timelines}
-          />
-        </div>
+        {charts}
       </div>
     </div>
   )
