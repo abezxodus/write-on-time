@@ -7,33 +7,43 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 
-
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript"></script>
-
+  <script src="https://use.typekit.net/axs3axn.js"></script>
+  <script>try{Typekit.load({ async : true });}catch(e){}</script>
 
 </head>
 <body class="scheduler-background">
   
-  <nav class="top-bar, custom-top-bar">
-    <%- if current_user -%>
-      <h1 class="large-12 medium-12 small-12"><a href="/userpage"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
-    <%- else -%>
-      <h1 class="large-12 medium-12 small-12"><a href="/"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
-    <%- end -%>
-    <section class="top-bar-section custom-top-bar-section">
-        <%- if current_user -%>
+  <nav class="custom-top-bar grid-x">
+    <h1 class="large-11 medium-11 small-12 no-line-break"><a href="/userpage"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
+    <section class="large-1 medium-1 small-1">
           <div class="header-text">  
-            <button><%= link_to 'Stats', "/stats"%></button>
-            <button><%= link_to 'All Projects', "/projects"%></button>
-            <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
+            <ul class="calendar-ul dropdown" data-dropdown-menu>
+              <li>
+                <a href="#" class="nav">
+                  <div class="one"></div>
+                  <div class="two"></div>
+                  <div class="three"></div>
+                </a>
+                <%- if current_user -%>
+                  <ul class="menu selectWrapper">
+                    <li class="selectWrapper-item"><%= link_to 'Dashboard', "/userpage"%></li>
+                    <li class="selectWrapper-item"><%= link_to 'All Projects', "/projects"%></li>
+                    <li class="selectWrapper-item"><%= link_to 'Stats', "/stats"%></li>
+                    <li class="selectWrapper-item"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+                  </ul>
+                <%- else -%>
+                  <ul class="menu selectWrapper">
+                    <li class="selectWrapper-item"><%= link_to 'Landing Page', "/"%></li>
+                    <li class="selectWrapper-item"><%= link_to 'Sign In', new_user_session_path %></li>
+                    <li class="selectWrapper-item"><%= link_to 'Sign Up', new_user_registration_path %></li>
+                  </ul>
+                <%- end -%>
+              </li>
+            </ul>
           </div>
-        <%- else -%>
-          <div class="header-text">
-            <button ><%= link_to 'Sign In', new_user_session_path %></button>
-            <button ><%= link_to 'Sign Up', new_user_registration_path %></button>
-          </div>
-        <%- end -%>
+
     </section>
   </nav>
 

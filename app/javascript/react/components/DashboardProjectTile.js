@@ -32,17 +32,12 @@ const DashboardProjectTile = (props) => {
         <h4><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></h4>
         {mappedAssignments}
         <div className="center">
-          <br></br>
-          <form className="center-button" onSubmit={submitHandler}>
+          <form className="center-button line-break" onSubmit={submitHandler}>
             <div className="vertical-center">
               <input className="form-button large-2" type="submit" value="+Assignment"/>
             </div>
           </form>
-          <br></br>
-          <br></br>
           {editLink}
-          <br></br>
-          <br></br>
         </div>
       </div>
     </div>
