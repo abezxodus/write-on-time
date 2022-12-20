@@ -22,7 +22,7 @@ const ProjectIndexTile = (props) => {
   }
 
   return(
-    <div className="callout">
+    <div className="callout tile-box">
       <h3 className="center"><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></h3>
       {description}
       <p>Status: {status}</p>
