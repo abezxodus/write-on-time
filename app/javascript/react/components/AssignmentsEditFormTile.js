@@ -1,35 +1,25 @@
 import React from "react"
 import ErrorList from "./ErrorList"
+import FormattedDate from "./services/FormattedDate"
+import PastDue from "./services/PastDue"
+import SubmissionVerifier from "./services/SubmissionVerifier"
+import HandleInput from "./services/HandleInput"
 
 const AssignmentsEditFormTile = (props) => {
-
   const handleInputChangeAssignment = (event) => {
-    if(event.currentTarget.name === "open"){
-      let checkbox = !event.currentTarget.checked
-      props.setAssignment({
-        ...props.assignment,
-        [event.currentTarget.name]: checkbox
-      })
-    }else{
-      props.setAssignment({
-        ...props.assignment,
-        [event.currentTarget.name]: event.currentTarget.value
-      })
-    }
+    let newInput = new HandleInput(event).formatInput()
+    props.setAssignment({
+      ...props.assignment,
+      [event.currentTarget.name]: newInput
+    })
   }
 
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-  const due_date = new Date(props.assignment.due_date)
-  due_date.setMinutes(due_date.getMinutes() + due_date.getTimezoneOffset())
-  const formattedDueDate = due_date.toLocaleDateString("en-US", options)
-
   let status
-  if(props.assignment.open === false){
-    status = <p>CLOSED</p>
-  } else if(props.assignment.past_due === true) {
-    status = <p className="past-due">PAST DUE</p>
-  } else {
-    status = <p>OPEN</p>
+  let formattedDueDate
+  
+  if(props){
+    status = new PastDue(props.assignment.past_due, props.assignment.open).pastDueMessage(props.assignment.open)
+    formattedDueDate = new FormattedDate(props.assignment.due_date)
   }
 
   const submitHandler = async (event) => {
@@ -40,24 +30,7 @@ const AssignmentsEditFormTile = (props) => {
   }
 
   const validForSubmission = () => {
-    let submitErrors = {}
-    const requiredFields = ["name", "due_date", "page_count_req", "word_count_req"]
-    requiredFields.forEach(field => {
-      if (props.assignment[field].trim() === "") {
-        submitErrors = {
-          ...submitErrors,
-          [field]: "is blank"
-        }
-      }
-      if(field == "page_count_req" || field == "word_count_req"){
-        if (isNaN(props.assignment[field].trim())) {
-          submitErrors = {
-            ...submitErrors,
-            [field]: "is either not a number or contains a comma."
-          }
-        }
-      }
-    })
+    let submitErrors = new SubmissionVerifier(props.assignment).assignmentErrorCheck()
     props.setErrors(submitErrors)
     return _.isEmpty(submitErrors)
   }
@@ -76,7 +49,7 @@ const AssignmentsEditFormTile = (props) => {
     
     <label className="cell large-4" htmlFor="due_date">
       *Due Date :
-      <p>{formattedDueDate}</p>
+      <p>{formattedDueDate.dateFormat()}</p>
     </label>
   
     <label className="cell">

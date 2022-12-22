@@ -1,5 +1,8 @@
 import React, {useState} from "react"
 import ErrorList from "./ErrorList"
+import SubmissionVerifier from "./services/SubmissionVerifier"
+import HandleInput from "./services/HandleInput"
+import BackendMessages from "./services/BackendMessages"
 
 const NewAssignmentFormTile = (props) => {
   const [newAssignment, setNewAssignment] = useState({
@@ -14,40 +17,15 @@ const NewAssignmentFormTile = (props) => {
   })
 
   const handleInputChangeAssignment = (event) => {
-    if(event.currentTarget.name === "email_reminder" || 
-        event.currentTarget.name === "text_reminder" || 
-        event.currentTarget.name === "google_calendar"){
-      setNewAssignment({
-        ...newAssignment,
-        [event.currentTarget.name]: event.currentTarget.checked
-      })
-    } else {
-      setNewAssignment({
-        ...newAssignment,
-        [event.currentTarget.name]: event.currentTarget.value
-      })
-    }
+    let newInput = new HandleInput(event).formatInput()
+    setNewAssignment({
+      ...newAssignment,
+      [event.currentTarget.name]: newInput
+    })
   }
 
   const validForSubmission = () => {
-    let submitErrors = {}
-    const requiredFields = ["name", "due_date", "page_count_req", "word_count_req"]
-    requiredFields.forEach(field => {
-      if (newAssignment[field].trim() === "") {
-        submitErrors = {
-          ...submitErrors,
-          [field]: "is blank"
-        }
-      }
-      if(field == "page_count_req" || field == "word_count_req"){
-        if (isNaN(newAssignment[field].trim())) {
-          submitErrors = {
-            ...submitErrors,
-            [field]: "is either not a number or contains a comma."
-          }
-        }
-      }
-    })
+    let submitErrors = new SubmissionVerifier(newAssignment).assignmentErrorCheck()
     props.setErrors(submitErrors)
     return _.isEmpty(submitErrors)
   }
@@ -60,10 +38,8 @@ const NewAssignmentFormTile = (props) => {
   }
   
   let backendErrorMessages
-  if(props.mappedErrors){
-    backendErrorMessages =  <div className="callout alert grid-x cell large-12">
-                              <ul className="calendar-ul">{props.mappedErrors}</ul>
-                            </div>
+  if(props.backendErrors["errors"]){
+    backendErrorMessages = new BackendMessages(props.backendErrors["errors"]).messageDisplay()
   }
 
   return(

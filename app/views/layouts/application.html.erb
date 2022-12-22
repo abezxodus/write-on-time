@@ -16,7 +16,7 @@
 <body class="scheduler-background">
   
   <nav class="custom-top-bar grid-x">
-    <h1 class="large-11 medium-11 small-12 no-line-break"><a href="/userpage"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
+    <h1 class="large-11 medium-11 small-12 no-line-break"><a href="/dashboard"><img src="https://write-on-time.s3.amazonaws.com/logos/Write+On+Time+Logo+3.png" alt="image of typewriter"></h1>
     <section class="large-1 medium-1 small-1">
           <div class="header-text">  
             <ul class="calendar-ul dropdown" data-dropdown-menu>
@@ -28,7 +28,7 @@
                 </a>
                 <%- if current_user -%>
                   <ul class="menu selectWrapper">
-                    <li class="selectWrapper-item"><%= link_to 'Dashboard', "/userpage"%></li>
+                    <li class="selectWrapper-item"><%= link_to 'Dashboard', "/dashboard"%></li>
                     <li class="selectWrapper-item"><%= link_to 'All Projects', "/projects"%></li>
                     <li class="selectWrapper-item"><%= link_to 'Stats', "/stats"%></li>
                     <li class="selectWrapper-item"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>

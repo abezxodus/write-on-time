@@ -36,25 +36,13 @@ const NewProjectFormContainer = (props) => {
     } 
   }
 
-  let mappedErrors
-
-  if(backendErrors["errors"]){
-    mappedErrors = backendErrors["errors"].map((error) => {
-      if(!error.includes("Created at")){
-        return(
-          <li>{error}</li>
-        )
-      }
-    })
-  }
-
   let assignmentForm
 
   if(savedAssignment.id){
     assignmentForm = <GoogleCalendarSetup
       savedAssignment={savedAssignment}
       savedProject={savedProject}
-      mappedErrors={mappedErrors}
+      backendErrors={backendErrors}
     />
   } else if (savedProject.id) {
     assignmentForm = <NewAssignmentFormTile
@@ -62,7 +50,7 @@ const NewProjectFormContainer = (props) => {
       savedProject={savedProject}
       errors={errors}
       setErrors={setErrors}
-      mappedErrors={mappedErrors}
+      backendErrors={backendErrors}
     />
   } else {
     assignmentForm = <NewProjectFormTile
@@ -70,6 +58,7 @@ const NewProjectFormContainer = (props) => {
       savedProject={savedProject}
       errors={errors}
       setErrors={setErrors}
+      backendErrors={backendErrors}
     />
   }
 

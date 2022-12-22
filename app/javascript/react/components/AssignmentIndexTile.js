@@ -1,63 +1,40 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import NaHandling from "./services/NaHandling"
+import PastDue from "./services/PastDue"
+import OpenStatus from "./services/OpenStatus"
+import FormattedDate from "./services/FormattedDate"
 
 const AssignmentIndexTile = (props) => {
-  let status
-  if(props.assignment.open == true){
-    status = <p>Status: Open</p>
-  } else {
-    status = <p>Status: Closed</p>
-  }
-
   let pastDue
-  if(props.assignment.past_due == true && props.assignment.open == true){
-    pastDue = <h5 className="past-due">PAST DUE</h5>
-  }
-
-  let page_count
-  if(props.assignment.page_count_req == ""){
-    page_count = "N/A"
-  } else {
-    page_count = props.assignment.page_count_req
-  }
-
-  let word_count
-  if(props.assignment.word_count_req == ""){
-    word_count = "N/A"
-  } else {
-    word_count = props.assignment.word_count_req
-  }
-  
+  let pageCount
+  let wordCount
   let note
-  if(props.assignment.note == ""){
-    note = "N/A"
-  } else {
-    note = props.assignment.note
-  }
-
+  let status
   let editButton
-  if(props.assignment.open == true){
-    editButton = <Link to={`/assignments/${props.assignment.id}/edit`}>Edit or Mark as Completed</Link>
+  let formattedDueDate
+
+  if(props) {
+    pageCount = new NaHandling(props.assignment.page_count_req)
+    wordCount = new NaHandling(props.assignment.word_count_req)
+    note = new NaHandling(props.assignment.note)
+    pastDue = new PastDue(props.assignment.past_due, props.assignment.open)
+    status = new OpenStatus(props.assignment.open)
+    formattedDueDate = new FormattedDate(props.assignment.due_date)
+    editButton = status.openAssignment(props.assignment.id)
   }
-
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-  const due_date = new Date(props.assignment.due_date)
-  due_date.setMinutes(due_date.getMinutes() + due_date.getTimezoneOffset())
-  const formattedDueDate = due_date.toLocaleDateString("en-US", options)
-
 
   return(
     <div className="callout left">
       <h4 className="center">{props.assignment.name}</h4>
-      {pastDue}
-      <p>Due {formattedDueDate}</p>
-      {status}
-      <p className="no-line-break"> Notes: </p><p>{note}</p>
+      {pastDue.pastDueMessage()}
+      <p>Due {formattedDueDate.dateFormat()}</p>
+      {status.open()}
+      <p className="no-line-break"> Notes: </p><p>{note.value}</p>
       <div className="callout container-container">
         <h5 className="center line-break"> Measures For Success</h5>
         <ul className="calendar-ul">
-          <li className="line-break"> Page Count: {page_count}</li>
-          <li> Word Count: {word_count}</li>
+          <li className="line-break"> Page Count: {pageCount.value}</li>
+          <li> Word Count: {wordCount.value}</li>
         </ul>
       </div>
       <div className="center">
