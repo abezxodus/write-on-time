@@ -19,6 +19,7 @@ const DashboardContainer = (props) => {
   const fetchDashboard = async () => {
     const parsedProjects = await FetchProjects.getProjects()
     setProjects(parsedProjects)
+    setLoaded(true)
   }
 
   const addAssignment = async (formPayload) => {
@@ -34,7 +35,6 @@ const DashboardContainer = (props) => {
     const url = props.match.params.id
     const parsedStats = await FetchStats.getStats(url)
     setStats(parsedStats[0])
-    // debugger
   }
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const DashboardContainer = (props) => {
                             <h2 className="blur-header">User Dashboard</h2>
                             <div className="container">
                               <StatsSummaryTile
-                                key={stats["stats"].id}
+                                // key={stats["stats"].id}
                                 stats={stats["stats"]}
                               />
                             </div>
