@@ -8,7 +8,6 @@ const AssignmentsEditFormContainer = (props) => {
   const [assignment, setAssignment] = useState({})
   const [errors, setErrors] = useState({})
   const [formAssignment, setFormAssignment] = useState({})
-  const [project, setProject] = useState({})
   const [redirect, setRedirect] = useState(false)
 
   const fetchAssignment = async () => {
@@ -22,7 +21,6 @@ const AssignmentsEditFormContainer = (props) => {
     const url = props.match.params.id
     const responseBody = await FetchPostEditAssignment.postEditAssignment(url, formPayload)
     if(responseBody){
-      setProject(responseBody)
       setRedirect(true)
     }
   }
@@ -31,9 +29,9 @@ const AssignmentsEditFormContainer = (props) => {
     fetchAssignment()
   }, [])
 
-  if(redirect == true){
+  if(redirect === true){
     return(
-      <Redirect to={`/userpage`}/>
+      <Redirect to={`/dashboard`}/>
     )
   }
   

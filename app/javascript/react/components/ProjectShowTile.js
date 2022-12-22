@@ -1,40 +1,25 @@
 import React from "react"
 import AssignmentIndexContainer from "./AssignmentIndexContainer"
 import { Link } from "react-router-dom"
+import OpenStatus from "./services/OpenStatus"
+import NaHandling from "./services/NaHandling"
 
 const ProjectShowTile = (props) => {
-
   let editDisplay
-  if(props.projectPackage){
-    if(props.projectPackage.open == true){
-      if(props.projectPackage.closeable ==true){
-        editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Close Project</Link>
-      } else {
-        editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit Project</Link>
-      }
-
-    } else {
-      editDisplay = <Link to={`/projects/${props.projectPackage.id}/edit`} className="line-break">Edit or Reopen Project</Link>
-    }
-  }
-
-  let status
-  if(props.projectPackage.open === false){
-    status = <p>Status: CLOSED</p>
-  } else {
-    status = <p>Status: OPEN</p>
-  }
-
   let description
-  if(props.projectPackage.description !== ""){
-    description = <p>"{props.projectPackage.description}"</p>
+  let status
+
+  if(props){    
+    description = new NaHandling(props.projectPackage.description).descriptionMessage()
+    status = new OpenStatus(props.projectPackage.open)
+    editDisplay = status.closeable(props.projectPackage.closeable, props.projectPackage.id)
   }
 
   return (
     <div className="container">
         <h3>{props.projectPackage.name}</h3>
         {description}
-        {status}
+        {status.open()}
         {editDisplay}
         <AssignmentIndexContainer
           assignments={props.assignmentPackage}

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations' }
 
   get '/', to: 'static_pages#index'
-  get '/userpage', to: 'static_pages#index'
+  get '/dashboard', to: 'static_pages#index'
   get '/stats', to: 'static_pages#index'
   get '/projects', to: 'static_pages#index'
   get '/projects/:id', to: 'static_pages#index'

@@ -1,5 +1,8 @@
 import React, { useState } from "react"
 import ErrorList from "./ErrorList"
+import SubmissionVerifier from "./services/SubmissionVerifier"
+import HandleInput from "./services/HandleInput"
+import BackendMessages from "./services/BackendMessages"
 
 const NewProjectFormTile = (props) => {
   const [newProject, setNewProject] = useState({
@@ -15,32 +18,22 @@ const NewProjectFormTile = (props) => {
   }
 
   const handleInputChangeProject = (event) => {
+    let newInput = new HandleInput(event).formatInput()
     setNewProject({
       ...newProject,
-      [event.currentTarget.name]: event.currentTarget.value
+      [event.currentTarget.name]: newInput
     })
   }
 
   const validForSubmission = () => {
-    let submitErrors = {}
-    const requiredFields = ["name"]
-    requiredFields.forEach(field => {
-      if (newProject[field].trim() === "") {
-        submitErrors = {
-          ...submitErrors,
-          [field]: "is blank"
-        }
-      }
-    })
+    let submitErrors = new SubmissionVerifier(newProject).projectErrorCheck()
     props.setErrors(submitErrors)
     return _.isEmpty(submitErrors)
   }
 
   let backendErrorMessages
-  if(props.mappedErrors){
-    backendErrorMessages =  <div className="callout alert grid-x cell large-12">
-                              <ul className="calendar-ul">{props.mappedErrors}</ul>
-                            </div>
+  if(props.backendErrors["errors"]){
+    backendErrorMessages = new BackendMessages(props.backendErrors["errors"]).messageDisplay()
   }
 
   return (

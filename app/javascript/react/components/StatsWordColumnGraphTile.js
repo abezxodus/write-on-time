@@ -1,17 +1,10 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
+import StatsTimelineData from './services/StatsTimelineData';
 
 const StatsWordColumnGraphTile = (props) => {
-  let data
-  const months = ["January", "February", "March", "April", "May", "June", 
-                  "July", "August", "September", "October", "November", "December"]
-
-  if(props.timelines.length > 0){
-    data = props.timelines.map((timeline) => {
-      return [months[timeline.month - 1], timeline.words]
-    })
-    data.unshift(['Month', 'Words'])
-  }
+  let data = new StatsTimelineData(props.timelines).words()
+  
   return (
     <div>
       <h3>Accumulative Words Written</h3>
@@ -21,7 +14,7 @@ const StatsWordColumnGraphTile = (props) => {
           options={{'legend':'bottom'}}
           graph_id="ColumnChart"
           width="100%"
-        />
+      />
     </div>
   );
 }

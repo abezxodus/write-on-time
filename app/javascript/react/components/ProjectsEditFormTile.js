@@ -1,38 +1,26 @@
-import React, {useState} from "react"
+import React from "react"
 import ErrorList from "./ErrorList"
+import SubmissionVerifier from "./services/SubmissionVerifier"  
+import OpenStatus from "./services/OpenStatus"
+import HandleInput from "./services/HandleInput"
 
 const ProjectsEditFormTile = (props) => {
   const handleInputChangeProject = (event) => {
-    if(event.currentTarget.name === "open"){
-      let checkbox = !event.currentTarget.checked
-      props.setProject({
-        ...props.project,
-        [event.currentTarget.name]: checkbox
-      })
-    }else{
-      props.setProject({
-        ...props.project,
-        [event.currentTarget.name]: event.currentTarget.value
-      })
-    }   
-  }
+    let newInput = new HandleInput(event).formatInput()
+    props.setProject({
+      ...props.project,
+      [event.currentTarget.name]: newInput
+    })
+  }   
 
   let checkedStatus
   let status
-  if(props.project.open === false){
-    status = <p>CLOSED</p>
-    checkedStatus = true
-  } else {
-    status = <p>OPEN</p>
-    checkedStatus = false
-  }
-
   let closeOption
-  if(props.project.closeable == true){
-    closeOption = <label className="cell large-4" htmlFor="open">
-                    Close Project?
-                    <input id="open" type="checkbox" name="open" onChange={handleInputChangeProject} checked={checkedStatus}/>
-                  </label>
+  
+  if(props){
+    status = new OpenStatus(props.project.open)
+    checkedStatus = !props.project.open
+    closeOption = status.closeableCheckBox(props.project.closeable, handleInputChangeProject, checkedStatus)
   }
 
   const submitHandler = async (event) => {
@@ -43,16 +31,7 @@ const ProjectsEditFormTile = (props) => {
   }
 
   const validForSubmission = () => {
-    let submitErrors = {}
-    const requiredFields = ["name"]
-    requiredFields.forEach(field => {
-      if (props.project[field].trim() === "") {
-        submitErrors = {
-          ...submitErrors,
-          [field]: "is blank"
-        }
-      }
-    })
+    let submitErrors = new SubmissionVerifier(props.project).projectErrorCheck()
     props.setErrors(submitErrors)
     return _.isEmpty(submitErrors)
   }
@@ -72,10 +51,9 @@ const ProjectsEditFormTile = (props) => {
           Description
           <input id="description" type="text" name="description" onChange={handleInputChangeProject} value={props.project.description}/>
         </label>
-
   
         <label className="cell">
-          {status}
+          {status.open()}
         </label>
 
       {closeOption}

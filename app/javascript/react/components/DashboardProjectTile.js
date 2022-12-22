@@ -1,10 +1,11 @@
 import React from "react"
 import DashboardAssignmentTile from "./DashboardAssignmentTile"
 import { Link } from "react-router-dom"
+import OpenStatus from "./services/OpenStatus"
 
 const DashboardProjectTile = (props) => {
   const mappedAssignments = props.assignments.map((assignment) => {
-    if(assignment.open == true) {
+    if(assignment.open === true) {
       return(
         <DashboardAssignmentTile
         key={assignment.id}
@@ -15,10 +16,9 @@ const DashboardProjectTile = (props) => {
   })
 
   let editLink
-  if(props.project.closeable){
-    editLink = <Link to={`/projects/${props.project.id}/edit`}>Edit or Close Project</Link>
-  } else {
-    editLink = <Link to={`/projects/${props.project.id}/edit`}>Edit Project</Link>
+  if(props){
+    let openProjectCheck = new OpenStatus(props.project.open)
+    editLink = openProjectCheck.closeable(props.project.closeable, props.project.id)
   }
 
   const submitHandler = async (event) => {

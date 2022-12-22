@@ -1,23 +1,22 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import FormattedDate from "./services/FormattedDate"
+import PastDue from "./services/PastDue"
 
 const DashboardAssignmentTile = (props) => {
-
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-  const due_date = new Date(props.assignment.due_date)
-  due_date.setMinutes(due_date.getMinutes() + due_date.getTimezoneOffset())
-  const formattedDueDate = due_date.toLocaleDateString("en-US", options)
-
   let pastDue
-  if(props.assignment.past_due == true){
-    pastDue = <p className="past-due">PAST DUE!</p>
+  let formattedDueDate
+  
+  if(props) {
+    pastDue = new PastDue(props.assignment.past_due, true)
+    formattedDueDate = new FormattedDate(props.assignment.due_date)
   }
   
   return(
     <div className="callout container-container">
       <p>Current Assignment: <Link to={`/assignments/${props.assignment.id}`}>{props.assignment.name}</Link></p>
-      <p>Due Date: {formattedDueDate}</p>
-      {pastDue}
+      <p>Due Date: {formattedDueDate.dateFormat()}</p>
+      {pastDue.pastDueMessage()}
       <Link to={`/assignments/${props.assignment.id}/edit`}>Edit or Mark As Completed</Link>
     </div>
   )

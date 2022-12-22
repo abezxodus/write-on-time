@@ -25,9 +25,9 @@ const ProjectsEditFormContainer = (props) => {
     fetchProject()
   }, [])
 
-  if(redirect == true){
+  if(redirect === true){
     return(
-      <Redirect to={`/userpage`}/>
+      <Redirect to={`/dashboard`}/>
     )
   }
 

@@ -72,7 +72,7 @@ class CalendarsController < ApplicationController
 
     service.insert_event(params[:calendar_id], event)
 
-    redirect_to userpage_url
+    redirect_to dashboard_url
   end
 
   private

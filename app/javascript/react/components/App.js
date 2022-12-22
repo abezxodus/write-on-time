@@ -15,7 +15,7 @@ export const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={DashboardLandingTile}/>
-        <Route exact path="/userpage" component={DashboardContainer}/>
+        <Route exact path="/dashboard" component={DashboardContainer}/>
         <Route exact path="/projects" component={ProjectIndexContainer}/>
         <Route exact path="/new" component={NewProjectFormContainer}/>
         <Route exact path="/projects/:id/edit" component={ProjectsEditFormContainer}/>
