@@ -18,7 +18,9 @@ const ProjectsEditFormContainer = (props) => {
   const editProject = async (formPayload) => {
     const url = props.match.params.id
     const parsedProject = await FetchPostEditProject.postEditProject(url, formPayload)
-    setRedirect(true)
+    if(parsedProject){
+      setRedirect(true)
+    }
   }
 
   useEffect(() => {
