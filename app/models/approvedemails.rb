@@ -10,8 +10,8 @@ class ApprovedEmails
     valid_emails = ["michaeltrainor.mt@gmail.com", 
                     "testingwriteontime@gmail.com", 
                     "writeontimereminder@gmail.com", 
-                    "shiyan@bu.edu",
-                    "mike9lovett@gmail.com"]
+                    # "mike9lovett@gmail.com",
+                    "shiyan@bu.edu"]
     valid_emails.include?(email_string)
   end
 end
