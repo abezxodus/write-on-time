@@ -8,13 +8,14 @@ class PastDue {
     } else {
       this.pastDue = false;
     }
+    this.openStatus = openStatus;
   }
 
-  pastDueMessage(openStatus) {
+  pastDueMessage() {
     if(this.pastDue === true) {
       return <h5 className="past-due">PAST DUE</h5>
     } else {
-      return new OpenStatus(openStatus).open()
+      return new OpenStatus(this.openStatus).open()
     }
   }
 }

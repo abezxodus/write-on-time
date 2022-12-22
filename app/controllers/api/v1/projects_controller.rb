@@ -35,7 +35,7 @@ class Api::V1::ProjectsController < ApiController
     if(newProject.save)
       if(current_user.projects.length == 1)
         new_stat = Stat.create
-        new_stat.update(user_id: current_user.id)
+        new_stat.update(user_id: current_user.id, projects_open: 1)
       end
       new_open_projects = current_user.stat["projects_open"] + 1
       current_user.stat.update(projects_open: new_open_projects)
